@@ -6,11 +6,12 @@
                 <xpath>Defs/ThingDef[defName="Wall"]</xpath>
                 <value>
                     <modExtensions>
-                        <li Class="SK_Building_Alternatives_Framework.AlternativesModExtensions">
+                        <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
                             <alternatives>
                                 <li>Door</li>
                                 <li>Fence</li>
                                 <li>FenceGate</li>
+                                <li>FueledStove</li>
                             </alternatives>
                             <respectOriginalStuff>true</respectOriginalStuff>
                         </li>
@@ -21,10 +22,11 @@
                 <xpath>Defs/ThingDef[defName="OrnateDoor"]</xpath>
                 <value>
                     <modExtensions>
-                        <li Class="SK_Building_Alternatives_Framework.AlternativesModExtensions">
+                        <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
                             <alternatives>
                                 <li>Column</li>
                             </alternatives>
+                            <uiIconPath>UI/ListCustom</uiIconPath>
                         </li>
                     </modExtensions>
                 </value>

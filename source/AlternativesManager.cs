@@ -42,67 +42,27 @@ namespace SK_Building_Alternatives_Framework
 
             foreach (var alt in alternatives)
             {
-                if (respectsOriginalStuff && alt.MadeFromStuff)
-                {
-                    // Create designators for each available stuff type
-                    foreach (ThingDef stuff in GetAvailableStuffFor(alt))
-                    {
-                        if (originalStuffDef != stuff)
-                        {
-                            continue;
-                        }
-                        var designator = new Designator_Build(alt);
-                        designator.SetStuffDef(stuff);
+                // Create single designator per alternative - let ProcessInput handle stuff selection
+                var designator = new Designator_Build(alt);
 
-                        // Set writeStuff to true to prevent "..." from appearing in labels
+                // If respecting original stuff and both original and alternative are made from stuff,
+                // try to set the same stuff type if it's compatible
+                if (respectsOriginalStuff && alt.MadeFromStuff && originalStuffDef != null)
+                {
+                    // Check if the original stuff can be used for this alternative
+                    if (originalStuffDef.stuffProps.CanMake(alt))
+                    {
+                        designator.SetStuffDef(originalStuffDef);
+                        // Set writeStuff to true to show the stuff name instead of "..."
                         ReflectionFields.SetWriteStuff(designator, true);
-
-                        designators.Add(designator);
                     }
+                    // If original stuff isn't compatible, leave it as default (will show "..." and open float menu when clicked)
                 }
-                else
-                {
-                    if (alt.MadeFromStuff)
-                    {
-                        // Create designators for each available stuff type
-                        foreach (var stuff in GetAvailableStuffFor(alt))
-                        {
-                            var designator = new Designator_Build(alt);
-                            designator.SetStuffDef(stuff);
 
-                            // Set writeStuff to true to prevent "..." from appearing in labels
-                            ReflectionFields.SetWriteStuff(designator, true);
-
-                            designators.Add(designator);
-                        }
-                    }
-                    else
-                    {
-                        // Create single designator for non-stuff items
-                        designators.Add(new Designator_Build(alt));
-                    }
-                }
+                designators.Add(designator);
             }
 
             return designators;
-        }
-
-        private static List<ThingDef> GetAvailableStuffFor(ThingDef thingDef)
-        {
-            if (!thingDef.MadeFromStuff)
-                return new List<ThingDef>();
-
-            var map = Find.CurrentMap;
-            if (map == null)
-                return new List<ThingDef>();
-
-            return map.resourceCounter.AllCountedAmounts.Keys
-                .Where(stuff => stuff.IsStuff &&
-                               stuff.stuffProps.CanMake(thingDef) &&
-                               (DebugSettings.godMode || map.listerThings.ThingsOfDef(stuff).Count > 0))
-                .OrderByDescending(stuff => stuff.stuffProps?.commonality ?? 0f)
-                .ThenBy(stuff => stuff.BaseMarketValue)
-                .ToList();
         }
 
         public static void ValidateAlternatives()
@@ -111,7 +71,7 @@ namespace SK_Building_Alternatives_Framework
 
             foreach (var thingDef in allThingDefs)
             {
-                var extension = thingDef.GetModExtension<AlternativesModExtensions>();
+                var extension = thingDef.GetModExtension<AlternativesModExtension>();
                 if (extension?.alternatives == null) continue;
 
                 for (int i = extension.alternatives.Count - 1; i >= 0; i--)

@@ -22,6 +22,7 @@ namespace SK_Building_Alternatives_Framework
         public Dialog_BuildAlternatives(Designator_Build originalDesignator)
         {
             this.originalDesignator = originalDesignator;
+
             this.alternativeDesignators = AlternativesManager.CreateAlternativeDesignatorsWithStuff(originalDesignator.PlacingDef, originalDesignator.StuffDef);
 
             // Insert original at the beginning
@@ -37,7 +38,7 @@ namespace SK_Building_Alternatives_Framework
         {
             Text.Font = GameFont.Medium;
             var titleRect = new Rect(0f, 0f, inRect.width, 35f);
-            Widgets.Label(titleRect, $"Choose Alternative for {originalDesignator.PlacingDef.LabelCap}");
+            Widgets.Label(titleRect, "WindowAlternative.Title.Label".Translate(originalDesignator.PlacingDef.LabelCap));
 
             Text.Font = GameFont.Small;
             var contentRect = new Rect(0f, 40f, inRect.width, inRect.height - 40f - CloseButSize.y - 10f);
@@ -70,12 +71,33 @@ namespace SK_Building_Alternatives_Framework
 
         private void DrawAlternativeItem(Rect rect, Designator_Build designator, bool isOriginal)
         {
-            Color backgroundColor = isOriginal ? new Color(0.2f, 0.4f, 0.2f, 0.5f) : new Color(0.1f, 0.1f, 0.1f, 0.5f);
+            bool isHovered = Mouse.IsOver(rect);
+
+            Color backgroundColor;
+            Color borderColor;
+            int borderThickness = 1;
+
+            if (isHovered)
+            {
+                backgroundColor = isOriginal
+                    ? new Color(0.3f, 0.5f, 0.3f, 0.8f)  // Brighter green for original
+                    : new Color(0.25f, 0.25f, 0.35f, 0.4f); // Slight blue tint for alternatives
+                borderColor = Color.white;
+                borderThickness = 2;
+            }
+            else
+            {
+                // Normal colors
+                backgroundColor = isOriginal
+                    ? new Color(0.2f, 0.4f, 0.2f, 0.5f)
+                    : new Color(0.1f, 0.1f, 0.1f, 0.5f);
+                borderColor = isOriginal ? Color.green : Color.gray;
+            }
+
             Widgets.DrawBoxSolid(rect, backgroundColor);
 
-            Color borderColor = isOriginal ? Color.green : Color.gray;
             GUI.color = borderColor;
-            Widgets.DrawBox(rect, 1);
+            Widgets.DrawBox(rect, borderThickness);
             GUI.color = Color.white;
 
             var iconRect = new Rect(rect.x + (rect.width - IconSize) / 2, rect.y + 10f, IconSize, IconSize);
@@ -83,6 +105,13 @@ namespace SK_Building_Alternatives_Framework
             try
             {
                 Color iconColor = designator.IconDrawColor;
+
+                // Slightly brighten icon on hover
+                if (isHovered)
+                {
+                    iconColor = Color.Lerp(iconColor, Color.white, 0.2f);
+                }
+
                 Widgets.DefIcon(iconRect, designator.PlacingDef, designator.StuffDef, 1f, null, false, iconColor);
             }
             catch
@@ -90,6 +119,13 @@ namespace SK_Building_Alternatives_Framework
                 if (designator.icon != null && designator.icon is Texture2D texture)
                 {
                     Color iconColor = designator.IconDrawColor;
+
+                    // Slightly brighten icon on hover
+                    if (isHovered)
+                    {
+                        iconColor = Color.Lerp(iconColor, Color.white, 0.2f);
+                    }
+
                     GUI.color = iconColor;
                     GUI.DrawTexture(iconRect, texture);
                     GUI.color = Color.white;
@@ -107,25 +143,55 @@ namespace SK_Building_Alternatives_Framework
 
             string label = designator.LabelCap;
             if (isOriginal)
-                label += " (Original)";
+                label = "WindowAlternative.Item.Original.Label".Translate(label);
+
+            // Brighten text slightly on hover
+            if (isHovered)
+            {
+                GUI.color = new Color(1f, 1f, 1f, 1f);
+            }
+            else
+            {
+                GUI.color = new Color(0.9f, 0.9f, 0.9f, 1f);
+            }
 
             Widgets.Label(labelRect, label);
+
+            // Reset text formatting
+            GUI.color = Color.white;
             Text.Anchor = TextAnchor.UpperLeft;
             Text.Font = GameFont.Small;
 
             // Handle click
             if (Widgets.ButtonInvisible(rect))
             {
-                SelectAlternative(designator);
+                HandleDesignatorClick(designator);
             }
 
             // Tooltip
-            if (Mouse.IsOver(rect))
+            if (isHovered)
             {
                 string tooltip = designator.Desc;
                 if (isOriginal)
-                    tooltip = "Original: " + tooltip;
+                    tooltip = "WindowAlternative.Item.Original.Tooltip".Translate(tooltip);
                 TooltipHandler.TipRegion(rect, tooltip);
+            }
+        }
+
+        private void HandleDesignatorClick(Designator_Build designator)
+        {
+            // Check if this is a stuff-based building that needs material selection
+            if (designator.PlacingDef is ThingDef thingDef && thingDef.MadeFromStuff)
+            {
+                DesignatorManager_Select_Patch.disablePostfix = true;
+                // For stuff-based buildings without pre-selected stuff, call ProcessInput to show the float menu
+                designator.ProcessInput(Event.current);
+                DesignatorManager_Select_Patch.disablePostfix = false;
+            }
+            else
+            {
+                // For non-stuff buildings or buildings with pre-selected stuff, select directly
+                SelectAlternative(designator);
             }
         }
 
@@ -133,7 +199,7 @@ namespace SK_Building_Alternatives_Framework
         {
             Find.DesignatorManager.Deselect();
             Find.DesignatorManager.Select(selectedDesignator);
-            Close();
+            // Menu is closed from DesignatorManager_Select_Patch patch
         }
     }
 }

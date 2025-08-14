@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using HarmonyLib;
 using RimWorld;
@@ -10,6 +11,9 @@ namespace SK_Building_Alternatives_Framework
     [HarmonyPatch(typeof(Designator_Build), "GizmoOnGUI")]
     public static class Designator_Build_GizmoOnGUI_Patch
     {
+        private static readonly float BUTTON_SIZE = 16f;
+        public static bool alternativesButtonClicked = false;
+
         public static bool Prefix(Designator_Build __instance, Vector2 topLeft, float maxWidth, GizmoRenderParms parms, ref GizmoResult __result)
         {
             if (__instance.PlacingDef.HasAlternatives())
@@ -19,6 +23,7 @@ namespace SK_Building_Alternatives_Framework
 
                 if (Mouse.IsOver(buttonRect) && Event.current.type == EventType.MouseDown)
                 {
+                    alternativesButtonClicked = true;
                     BuildAlternativesHelper.OpenAlternativesWindow(__instance);
                     Event.current.Use();
                     __result = new GizmoResult(GizmoState.Interacted, Event.current);
@@ -34,27 +39,63 @@ namespace SK_Building_Alternatives_Framework
             if (!__instance.PlacingDef.HasAlternatives())
                 return;
 
-            float buttonSize = 18f;
-            var buttonRect = new Rect(topLeft.x + __instance.GetWidth(maxWidth) - buttonSize - 2f, topLeft.y + 2f, buttonSize, buttonSize);
+            (Texture2D defaultIcon, Texture2D hoverIcon) = __instance.PlacingDef.GetUIIcons();
 
-            Widgets.DrawBoxSolid(buttonRect, new Color(0.2f, 0.2f, 0.2f, 0.8f));
+            var buttonRect = new Rect(topLeft.x + __instance.GetWidth(maxWidth) - BUTTON_SIZE - 2f, topLeft.y + 2f, BUTTON_SIZE, BUTTON_SIZE);
+            bool mouseOverRect = Mouse.IsOver(buttonRect);
 
-            GUI.color = Color.yellow;
-            Widgets.DrawBox(buttonRect, 1);
-            GUI.color = Color.white;
+            Texture2D iconToUse = mouseOverRect ? hoverIcon : defaultIcon;
 
-            Text.Font = GameFont.Tiny;
-            Text.Anchor = TextAnchor.MiddleCenter;
-            GUI.color = Color.yellow;
-            Widgets.Label(buttonRect, "A");
-            GUI.color = Color.white;
-            Text.Anchor = TextAnchor.UpperLeft;
-            Text.Font = GameFont.Small;
+            Widgets.DrawTextureFitted(buttonRect, iconToUse, 1f);
 
-            if (Mouse.IsOver(buttonRect))
+            if (mouseOverRect)
             {
-                TooltipHandler.TipRegion(buttonRect, "Click to see building alternatives");
+                TooltipHandler.TipRegion(buttonRect, "Gizmo.Button.Label".Translate());
             }
+        }
+
+        public static bool WasAlternativesButtonClicked()
+        {
+            bool result = alternativesButtonClicked;
+            return result;
+        }
+    }
+
+    // Handle float menu clicked from Dialog_BuildAlternatives
+    [HarmonyPatch(typeof(DesignatorManager), "Select")]
+    public static class DesignatorManager_Select_Patch
+    {
+        public static bool disablePostfix = false;
+        public static void Postfix()
+        {
+            if (disablePostfix)
+            {
+                return;
+            }
+            var buildAlternativesDialog = Find.WindowStack.Windows.FirstOrDefault(w => w is Dialog_BuildAlternatives);
+            if (buildAlternativesDialog != null)
+            {
+                buildAlternativesDialog.Close();
+            }
+        }
+    }
+
+    [HarmonyPatch(typeof(Designator_Build), "ProcessInput")]
+    public static class Designator_Build_ProcessInput_Patch
+    {
+        public static Designator_Build designator;
+        public static bool Prefix(Designator_Build __instance, Event ev)
+        {
+            // If this designator has alternatives and our button was just clicked, suppress ProcessInput
+            if (__instance.PlacingDef.HasAlternatives() && Designator_Build_GizmoOnGUI_Patch.WasAlternativesButtonClicked())
+            {
+                Designator_Build_GizmoOnGUI_Patch.alternativesButtonClicked = false;
+                return false; // Suppress the default ProcessInput behavior
+            }
+
+            Designator_Build_GizmoOnGUI_Patch.alternativesButtonClicked = false;
+
+            return true;
         }
     }
 }

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+    <WindowAlternative.Title.Label>Choose Alternative for {0}</WindowAlternative.Title.Label>
+    <WindowAlternative.Item.Original.Label>{0} (Original)</WindowAlternative.Item.Original.Label>
+    <WindowAlternative.Item.Original.Tooltip>Original: {0}</WindowAlternative.Item.Original.Tooltip>
+    <Gizmo.Button.Label>Click to see building alternatives</Gizmo.Button.Label>
+</LanguageData>
