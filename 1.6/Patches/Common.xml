@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+    <Operation Class="PatchOperationSequence">
+        <operations>
+            <li Class="PatchOperationAdd">
+                <xpath>Defs/ThingDef[defName="Wall"]</xpath>
+                <value>
+                    <modExtensions>
+                        <li Class="SK_Building_Alternatives_Framework.AlternativesModExtensions">
+                            <alternatives>
+                                <li>Door</li>
+                                <li>Fence</li>
+                                <li>FenceGate</li>
+                            </alternatives>
+                            <respectOriginalStuff>true</respectOriginalStuff>
+                        </li>
+                    </modExtensions>
+                </value>
+            </li>
+            <li Class="PatchOperationAdd">
+                <xpath>Defs/ThingDef[defName="OrnateDoor"]</xpath>
+                <value>
+                    <modExtensions>
+                        <li Class="SK_Building_Alternatives_Framework.AlternativesModExtensions">
+                            <alternatives>
+                                <li>Column</li>
+                            </alternatives>
+                        </li>
+                    </modExtensions>
+                </value>
+            </li>
+        </operations>
+    </Operation>
+</Patch>
