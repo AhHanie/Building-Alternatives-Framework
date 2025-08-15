@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+    <!-- Example Diagonal Walls Patch -->
+    <!-- This patch adds building altenatives to wall -->
+    <!-- <Operation Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="DiagonalWall30"]</xpath>
+        <value>
+            <modExtensions>
+                <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                    <alternatives>
+                        <li>DiagonalWall60</li>
+                        <li>DiagonalWall120</li>
+                        <li>DiagonalWall150</li>
+                    </alternatives>
+                    <uiIconPath>UI/List</uiIconPath>                        Optional UI Icon 
+                    <hoverUiIconPath>UI/ListSelected</hoverUiIconPath>      Optional Hover UI Icon
+                </li>
+            </modExtensions>
+        </value>
+    </Operation> -->
+</Patch>

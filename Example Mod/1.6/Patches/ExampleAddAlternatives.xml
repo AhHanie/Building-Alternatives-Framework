@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+    <!-- This patch adds building altenatives to wall -->
+    <Operation Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="Wall"]</xpath>
+        <value>
+            <modExtensions>
+                <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                    <alternatives>
+                        <li>Door</li>
+                        <li>Fence</li>
+                        <li>FenceGate</li>
+                        <li>FueledStove</li>
+                        <li>SteleLarge</li>
+                        <li>Bed</li>
+                        <li>SleepingSpot</li>
+                        <li>RoyalBed</li>
+                        <li>HospitalBed</li>
+                        <li>Bedroll</li>
+                        <li>Stool</li>
+                        <li>DiningChair</li>
+                    </alternatives>
+                    <uiIconPath>UI/List</uiIconPath>                    <!-- Optional UI Icon -->
+                    <hoverUiIconPath>UI/ListSelected</hoverUiIconPath>                    <!-- Optional Hover UI Icon -->
+                </li>
+            </modExtensions>
+        </value>
+    </Operation>
+</Patch>
