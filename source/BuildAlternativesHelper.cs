@@ -20,7 +20,7 @@ namespace SK_Building_Alternatives_Framework
             if (extension?.alternatives == null)
                 return new List<ThingDef>();
 
-            return extension.alternatives.Where(alt => alt != null).ToList();
+            return extension.alternatives;
         }
 
         public static (Texture2D, Texture2D) GetUIIcons(this BuildableDef def)

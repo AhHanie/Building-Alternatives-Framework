@@ -15,6 +15,12 @@ namespace SK_Building_Alternatives_Framework
         private List<bool> lastHoverStates = new List<bool>();
         private bool respectOriginalStuff = false;
 
+        private bool isNavigating = false;
+        private int highlightedIndex = -1;
+        private bool wasCtrlPressed = false;
+        private float lastNavigationTime = 0f;
+        private const float NAVIGATION_THROTTLE_TIME = 0.1f; // Minimum time between navigation steps (in seconds)
+
         private const float ItemWidth = 120f;
         private const float ItemHeight = 140f;
         private const float ItemSpacing = 10f;
@@ -45,22 +51,31 @@ namespace SK_Building_Alternatives_Framework
 
         public override void DoWindowContents(Rect inRect)
         {
+            HandleNavigationInput(inRect);
+
             Text.Font = GameFont.Medium;
 
-            // Get the width of the title text
             string titleText = "WindowAlternative.Title.Label".Translate(originalDesignator.PlacingDef.LabelCap);
             float titleTextWidth = Text.CalcSize(titleText).x;
 
-            // Draw title
             var titleRect = new Rect(0f, 0f, titleTextWidth, 35f);
             Widgets.Label(titleRect, titleText);
 
-            // Draw cycle all button right after the title with spacing
             float buttonsStartX = titleTextWidth + CycleButtonSpacing;
             DrawCycleAllButton(buttonsStartX);
 
-            // Draw toggle similar stuff button next to cycle all button
             DrawToggleSimilarStuffButton(buttonsStartX + CycleButtonSize + CycleButtonSpacing);
+
+            if (isNavigating)
+            {
+                float indicatorX = buttonsStartX + (CycleButtonSize + CycleButtonSpacing) * 2;
+                var indicatorRect = new Rect(indicatorX, 8f, 250f, 20f);
+                GUI.color = new Color(1f, 0.8f, 0.2f, 1f);
+                Text.Font = GameFont.Tiny;
+                Widgets.Label(indicatorRect, "WindowAlternative.Navigation.Label".Translate());
+                GUI.color = Color.white;
+                Text.Font = GameFont.Small;
+            }
 
             Text.Font = GameFont.Small;
             var contentRect = new Rect(0f, 40f, inRect.width, inRect.height - 40f - CloseButSize.y - 10f);
@@ -85,10 +100,141 @@ namespace SK_Building_Alternatives_Framework
                 float y = row * (ItemHeight + ItemSpacing) + WindowMargin / 2;
 
                 var itemRect = new Rect(x, y, ItemWidth, ItemHeight);
-                DrawAlternativeItem(itemRect, designator, i == 0, i);
+                bool isHighlighted = (isNavigating && i == highlightedIndex);
+                DrawAlternativeItem(itemRect, designator, i == 0, i, isHighlighted);
             }
 
             Widgets.EndScrollView();
+        }
+
+        private void HandleNavigationInput(Rect inRect)
+        {
+            bool isCtrlPressed = Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl);
+
+            // Check if Ctrl was just pressed (start navigation)
+            if (isCtrlPressed && !wasCtrlPressed)
+            {
+                StartNavigation();
+            }
+            // Check if Ctrl was just released (end navigation and select)
+            else if (!isCtrlPressed && wasCtrlPressed && isNavigating)
+            {
+                EndNavigationAndSelect();
+            }
+
+            // Handle scroll events while Ctrl is pressed - use Input.GetAxis for global scroll detection
+            if (isNavigating && isCtrlPressed)
+            {
+                float scroll = Input.GetAxis("Mouse ScrollWheel");
+                if (Mathf.Abs(scroll) > 0.05f && Time.realtimeSinceStartup - lastNavigationTime > NAVIGATION_THROTTLE_TIME)
+                {
+                    NavigateWithScroll(scroll);
+                    lastNavigationTime = Time.realtimeSinceStartup;
+                }
+
+                // Also consume scroll wheel events if they reach the window to prevent double handling
+                if (Event.current.type == EventType.ScrollWheel)
+                {
+                    Event.current.Use();
+                }
+            }
+
+            wasCtrlPressed = isCtrlPressed;
+        }
+
+        private void StartNavigation()
+        {
+            isNavigating = true;
+            highlightedIndex = 0;
+            lastNavigationTime = 0f;
+            EnsureHighlightedItemVisible();
+        }
+
+        private void EndNavigationAndSelect()
+        {
+            if (highlightedIndex >= 0 && highlightedIndex < alternativeDesignators.Count)
+            {
+                var selectedDesignator = alternativeDesignators[highlightedIndex];
+                SelectAlternative(selectedDesignator);
+            }
+            isNavigating = false;
+            highlightedIndex = -1;
+        }
+
+        private void NavigateWithScroll(float scroll)
+        {
+            var contentRect = new Rect(0f, 40f, windowRect.width, windowRect.height - 40f - CloseButSize.y - 10f);
+            int itemsPerRow = Mathf.FloorToInt((contentRect.width - WindowMargin) / (ItemWidth + ItemSpacing));
+            if (itemsPerRow < 1) itemsPerRow = 1;
+
+            int currentRow = highlightedIndex / itemsPerRow;
+            int currentCol = highlightedIndex % itemsPerRow;
+
+            if (scroll > 0f)
+            {
+                if (currentCol > 0)
+                {
+                    highlightedIndex--;
+                }
+                else if (currentRow > 0)
+                {
+                    int prevRow = currentRow - 1;
+                    int lastColInPrevRow = Mathf.Min(itemsPerRow - 1, (alternativeDesignators.Count - 1) - (prevRow * itemsPerRow));
+                    highlightedIndex = prevRow * itemsPerRow + lastColInPrevRow;
+                }
+            }
+            else if (scroll < 0f)
+            {
+                int maxColInCurrentRow = Mathf.Min(itemsPerRow - 1, (alternativeDesignators.Count - 1) - (currentRow * itemsPerRow));
+
+                if (currentCol < maxColInCurrentRow)
+                {
+                    highlightedIndex++;
+                }
+                else
+                {
+                    int nextRowStartIndex = (currentRow + 1) * itemsPerRow;
+                    if (nextRowStartIndex < alternativeDesignators.Count)
+                    {
+                        highlightedIndex = nextRowStartIndex;
+                    }
+                }
+            }
+
+            EnsureHighlightedItemVisible();
+        }
+
+        private void EnsureHighlightedItemVisible()
+        {
+            if (highlightedIndex < 0 || highlightedIndex >= alternativeDesignators.Count)
+                return;
+
+            var contentRect = new Rect(0f, 40f, windowRect.width, windowRect.height - 40f - CloseButSize.y - 10f);
+            int itemsPerRow = Mathf.FloorToInt((contentRect.width - WindowMargin) / (ItemWidth + ItemSpacing));
+            if (itemsPerRow < 1) itemsPerRow = 1;
+
+            int row = highlightedIndex / itemsPerRow;
+            float itemY = row * (ItemHeight + ItemSpacing) + WindowMargin / 2;
+            float itemBottomY = itemY + ItemHeight;
+
+            float visibleTop = scrollPosition.y;
+            float visibleBottom = scrollPosition.y + contentRect.height;
+
+            float padding = 20f;
+
+            if (itemY < visibleTop + padding)
+            {
+                scrollPosition.y = Mathf.Max(0f, itemY - padding);
+            }
+            else if (itemBottomY > visibleBottom - padding)
+            {
+                scrollPosition.y = itemBottomY - contentRect.height + padding;
+            }
+
+            int totalRows = Mathf.CeilToInt((float)alternativeDesignators.Count / itemsPerRow);
+            float totalHeight = totalRows * (ItemHeight + ItemSpacing) + WindowMargin;
+            float maxScroll = Mathf.Max(0f, totalHeight - contentRect.height);
+            scrollPosition.y = Mathf.Clamp(scrollPosition.y, 0f, maxScroll);
         }
 
         private void DrawCycleAllButton(float x)
@@ -99,33 +245,29 @@ namespace SK_Building_Alternatives_Framework
 
             bool isHovered = Mouse.IsOver(cycleButtonRect);
 
-            // Set icon color based on hover state and whether button is enabled
             Color iconColor;
             if (!hasStuffDesignators)
             {
-                iconColor = new Color(0.5f, 0.5f, 0.5f, 0.6f); // Grayed out when disabled
+                iconColor = new Color(0.5f, 0.5f, 0.5f, 0.6f);
             }
             else if (isHovered)
             {
-                iconColor = new Color(0.3f, 0.6f, 1f, 1f); // Blue when hovered
+                iconColor = new Color(0.3f, 0.6f, 1f, 1f);
             }
             else
             {
-                iconColor = Color.white; // Normal white
+                iconColor = Color.white;
             }
 
-            // Draw icon with color
             GUI.color = iconColor;
             Widgets.DrawTextureFitted(cycleButtonRect, Resources.CycleAllButtonIcon, 1f);
             GUI.color = Color.white;
 
-            // Handle click
             if (Widgets.ButtonInvisible(cycleButtonRect) && hasStuffDesignators)
             {
                 CycleAllStuff();
             }
 
-            // Tooltip
             if (isHovered)
             {
                 string tooltip = "WindowAlternative.CycleButton.Tooltip".Translate();
@@ -167,7 +309,6 @@ namespace SK_Building_Alternatives_Framework
                 ToggleRespectOriginalStuff();
             }
 
-            // Tooltip
             if (isHovered)
             {
                 string tooltipKey = respectOriginalStuff
@@ -244,22 +385,31 @@ namespace SK_Building_Alternatives_Framework
             return availableStuff;
         }
 
-        private void DrawAlternativeItem(Rect rect, Designator_Build designator, bool isOriginal, int index)
+        private void DrawAlternativeItem(Rect rect, Designator_Build designator, bool isOriginal, int index, bool isHighlighted = false)
         {
             bool isHovered = Mouse.IsOver(rect);
 
-            // Play hover sound when transitioning from not-hovered to hovered
-            if (isHovered && !lastHoverStates[index])
+            if (!isNavigating)
             {
-                SoundDefOf.Mouseover_Command.PlayOneShotOnCamera();
+                // Play hover sound when transitioning from not-hovered to hovered
+                if (isHovered && !lastHoverStates[index])
+                {
+                    SoundDefOf.Mouseover_Command.PlayOneShotOnCamera();
+                }
+                lastHoverStates[index] = isHovered;
             }
-            lastHoverStates[index] = isHovered;
 
             Color backgroundColor;
             Color borderColor;
             int borderThickness = 1;
 
-            if (isHovered)
+            if (isHighlighted)
+            {
+                backgroundColor = new Color(1f, 0.8f, 0.2f, 0.6f);
+                borderColor = new Color(1f, 0.8f, 0.2f, 1f);
+                borderThickness = 3;
+            }
+            else if (isHovered)
             {
                 backgroundColor = isOriginal
                     ? new Color(0.3f, 0.5f, 0.3f, 0.8f)
@@ -285,7 +435,11 @@ namespace SK_Building_Alternatives_Framework
 
             Color iconColor = designator.IconDrawColor;
 
-            if (isHovered)
+            if (isHighlighted)
+            {
+                iconColor = Color.Lerp(iconColor, Color.white, 0.3f);
+            }
+            else if (isHovered)
             {
                 iconColor = Color.Lerp(iconColor, Color.white, 0.2f);
             }
@@ -300,7 +454,11 @@ namespace SK_Building_Alternatives_Framework
             if (isOriginal)
                 label = "WindowAlternative.Item.Original.Label".Translate(label);
 
-            if (isHovered)
+            if (isHighlighted)
+            {
+                GUI.color = new Color(1f, 1f, 0.8f, 1f);
+            }
+            else if (isHovered)
             {
                 GUI.color = new Color(1f, 1f, 1f, 1f);
             }
@@ -315,8 +473,8 @@ namespace SK_Building_Alternatives_Framework
             Text.Anchor = TextAnchor.UpperLeft;
             Text.Font = GameFont.Small;
 
-            // Handle clicks - use different behavior for stuff-based vs non-stuff buildings
-            if (Mouse.IsOver(rect) && Event.current.type == EventType.MouseDown)
+            // Only handle mouse clicks if not in navigation mode
+            if (!isNavigating && Mouse.IsOver(rect) && Event.current.type == EventType.MouseDown)
             {
                 if (designator.PlacingDef is ThingDef thingDef && thingDef.MadeFromStuff)
                 {
@@ -338,16 +496,26 @@ namespace SK_Building_Alternatives_Framework
                 }
             }
 
-            if (isHovered)
+            if ((isHovered && !isNavigating) || isNavigating)
             {
                 string tooltip = designator.Desc;
                 if (isOriginal)
                     tooltip = "WindowAlternative.Item.Original.Tooltip".Translate(tooltip);
 
-                if (designator.PlacingDef is ThingDef thingDef && thingDef.MadeFromStuff)
+                if (isNavigating)
                 {
-                    tooltip += "\n\n" + "WindowAlternative.Item.Original.Tooltip.LeftClick".Translate() + "\n" +
-                        "WindowAlternative.Item.Original.Tooltip.RightClick".Translate();
+                    if (isHighlighted)
+                    {
+                        tooltip += "\n\n" + "WindowAlternative.Navigation.Tooltip".Translate();
+                    }
+                }
+                else
+                {
+                    if (designator.PlacingDef is ThingDef thingDef && thingDef.MadeFromStuff)
+                    {
+                        tooltip += "\n\n" + "WindowAlternative.Item.Original.Tooltip.LeftClick".Translate() + "\n" +
+                            "WindowAlternative.Item.Original.Tooltip.RightClick".Translate();
+                    }
                 }
 
                 TooltipHandler.TipRegion(rect, tooltip);

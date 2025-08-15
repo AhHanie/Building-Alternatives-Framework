@@ -8,5 +8,7 @@
     <WindowAlternative.CycleButton.Tooltip>Cycle through stuff materials for all alternatives</WindowAlternative.CycleButton.Tooltip>
     <WindowAlternative.ToggleButton.Tooltip.On>Toggle similar stuff off</WindowAlternative.ToggleButton.Tooltip.On>
     <WindowAlternative.ToggleButton.Tooltip.Off>Toggle similar stuff on</WindowAlternative.ToggleButton.Tooltip.Off>
+    <WindowAlternative.Navigation.Label>Navigation Mode - Release Ctrl to Select</WindowAlternative.Navigation.Label>
+    <WindowAlternative.Navigation.Tooltip>Release Ctrl to select this item</WindowAlternative.Navigation.Tooltip>
     <Gizmo.Button.Label>Cycle through stuff materials for all alternatives</Gizmo.Button.Label>
 </LanguageData>

@@ -103,10 +103,7 @@ namespace SK_Building_Alternatives_Framework
                 return;
             }
             var buildAlternativesDialog = Find.WindowStack.Windows.FirstOrDefault(w => w is Dialog_BuildAlternatives);
-            if (buildAlternativesDialog != null)
-            {
-                buildAlternativesDialog.Close();
-            }
+            buildAlternativesDialog?.Close();
         }
     }
 

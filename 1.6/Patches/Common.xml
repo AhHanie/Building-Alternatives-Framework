@@ -13,6 +13,13 @@
                                 <li>FenceGate</li>
                                 <li>FueledStove</li>
                                 <li>SteleLarge</li>
+                                <li>Bed</li>
+                                <li>SleepingSpot</li>
+                                <li>RoyalBed</li>
+                                <li>HospitalBed</li>
+                                <li>Bedroll</li>
+                                <li>Stool</li>
+                                <li>DiningChair</li>
                             </alternatives>
                             <uiIconPath>UI/List</uiIconPath>
                             <hoverUiIconPath>UI/ListSelected</hoverUiIconPath>
