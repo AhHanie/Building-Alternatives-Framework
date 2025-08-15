@@ -12,21 +12,10 @@
                                 <li>Fence</li>
                                 <li>FenceGate</li>
                                 <li>FueledStove</li>
+                                <li>SteleLarge</li>
                             </alternatives>
-                            <respectOriginalStuff>true</respectOriginalStuff>
-                        </li>
-                    </modExtensions>
-                </value>
-            </li>
-            <li Class="PatchOperationAdd">
-                <xpath>Defs/ThingDef[defName="OrnateDoor"]</xpath>
-                <value>
-                    <modExtensions>
-                        <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
-                            <alternatives>
-                                <li>Column</li>
-                            </alternatives>
-                            <uiIconPath>UI/ListCustom</uiIconPath>
+                            <uiIconPath>UI/List</uiIconPath>
+                            <hoverUiIconPath>UI/ListSelected</hoverUiIconPath>
                         </li>
                     </modExtensions>
                 </value>

@@ -3,5 +3,10 @@
     <WindowAlternative.Title.Label>Choose Alternative for {0}</WindowAlternative.Title.Label>
     <WindowAlternative.Item.Original.Label>{0} (Original)</WindowAlternative.Item.Original.Label>
     <WindowAlternative.Item.Original.Tooltip>Original: {0}</WindowAlternative.Item.Original.Tooltip>
-    <Gizmo.Button.Label>Click to see building alternatives</Gizmo.Button.Label>
+    <WindowAlternative.Item.Original.Tooltip.LeftClick>Left click: Select</WindowAlternative.Item.Original.Tooltip.LeftClick>
+    <WindowAlternative.Item.Original.Tooltip.RightClick>Right click: Choose material</WindowAlternative.Item.Original.Tooltip.RightClick>
+    <WindowAlternative.CycleButton.Tooltip>Cycle through stuff materials for all alternatives</WindowAlternative.CycleButton.Tooltip>
+    <WindowAlternative.ToggleButton.Tooltip.On>Toggle similar stuff off</WindowAlternative.ToggleButton.Tooltip.On>
+    <WindowAlternative.ToggleButton.Tooltip.Off>Toggle similar stuff on</WindowAlternative.ToggleButton.Tooltip.Off>
+    <Gizmo.Button.Label>Cycle through stuff materials for all alternatives</Gizmo.Button.Label>
 </LanguageData>

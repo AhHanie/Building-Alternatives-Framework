@@ -37,16 +37,6 @@ namespace SK_Building_Alternatives_Framework
             return (Resources.DefaultAltButtonIcon, Resources.DefaultAltButtonIconSelected);
         }
 
-        public static bool RespectsOriginalStuff(this BuildableDef def)
-        {
-            var extension = def.GetModExtension<AlternativesModExtension>();
-            if (extension == null)
-            {
-                return false;
-            }
-            return extension.respectOriginalStuff;
-        }
-
         public static List<Designator_Build> GetAlternativeDesignators(this BuildableDef def)
         {
             var alternatives = def.GetAlternatives();

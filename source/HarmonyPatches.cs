@@ -11,15 +11,45 @@ namespace SK_Building_Alternatives_Framework
     [HarmonyPatch(typeof(Designator_Build), "GizmoOnGUI")]
     public static class Designator_Build_GizmoOnGUI_Patch
     {
-        private static readonly float BUTTON_SIZE = 16f;
+        private static readonly float MIN_BUTTON_SIZE = 16f;
+        private static readonly float GIZMO_HEIGHT = 75f;
         public static bool alternativesButtonClicked = false;
+
+        private static float CalculateButtonSize(Designator_Build instance, float maxWidth)
+        {
+            (Texture2D defaultIcon, Texture2D hoverIcon) = instance.PlacingDef.GetUIIcons();
+            Texture2D iconToMeasure = defaultIcon ?? hoverIcon;
+
+            if (iconToMeasure == null)
+                return MIN_BUTTON_SIZE;
+
+            // Use the smaller dimension of the texture as the actual size
+            float textureSize = Mathf.Min(iconToMeasure.width, iconToMeasure.height);
+
+            // Calculate max allowed button size based on gizmo dimensions
+            float gizmoWidth = instance.GetWidth(maxWidth);
+            float maxButtonSize = Mathf.Min(gizmoWidth, GIZMO_HEIGHT);
+
+            // Use texture size but cap it at gizmo dimensions, ensure minimum size
+            return Mathf.Clamp(textureSize, MIN_BUTTON_SIZE, maxButtonSize);
+        }
+
+        private static Rect CalculateButtonRect(Designator_Build instance, Vector2 topLeft, float maxWidth)
+        {
+            float buttonSize = CalculateButtonSize(instance, maxWidth);
+
+            // Position button so top-right corner is anchored (scales toward bottom-left)
+            float rightEdge = topLeft.x + instance.GetWidth(maxWidth);
+            float topEdge = topLeft.y;
+
+            return new Rect(rightEdge - buttonSize, topEdge, buttonSize, buttonSize);
+        }
 
         public static bool Prefix(Designator_Build __instance, Vector2 topLeft, float maxWidth, GizmoRenderParms parms, ref GizmoResult __result)
         {
             if (__instance.PlacingDef.HasAlternatives())
             {
-                float buttonSize = 18f;
-                var buttonRect = new Rect(topLeft.x + __instance.GetWidth(maxWidth) - buttonSize - 2f, topLeft.y + 2f, buttonSize, buttonSize);
+                var buttonRect = CalculateButtonRect(__instance, topLeft, maxWidth);
 
                 if (Mouse.IsOver(buttonRect) && Event.current.type == EventType.MouseDown)
                 {
@@ -41,7 +71,7 @@ namespace SK_Building_Alternatives_Framework
 
             (Texture2D defaultIcon, Texture2D hoverIcon) = __instance.PlacingDef.GetUIIcons();
 
-            var buttonRect = new Rect(topLeft.x + __instance.GetWidth(maxWidth) - BUTTON_SIZE - 2f, topLeft.y + 2f, BUTTON_SIZE, BUTTON_SIZE);
+            var buttonRect = CalculateButtonRect(__instance, topLeft, maxWidth);
             bool mouseOverRect = Mouse.IsOver(buttonRect);
 
             Texture2D iconToUse = mouseOverRect ? hoverIcon : defaultIcon;

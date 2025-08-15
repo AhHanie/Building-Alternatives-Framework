@@ -4,10 +4,9 @@ using UnityEngine;
 
 namespace SK_Building_Alternatives_Framework
 {
-    public class AlternativesModExtension: DefModExtension
+    public class AlternativesModExtension : DefModExtension
     {
         public List<ThingDef> alternatives;
-        public bool respectOriginalStuff;
         public string uiIconPath;
         public string hoverUiIconPath;
         private Texture2D _uiIcon;
@@ -17,7 +16,6 @@ namespace SK_Building_Alternatives_Framework
         public AlternativesModExtension()
         {
             alternatives = null;
-            respectOriginalStuff = false;
             uiIconPath = null;
             hoverUiIconPath = null;
         }
