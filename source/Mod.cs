@@ -17,7 +17,6 @@ namespace SK_Building_Alternatives_Framework
         public void Init()
         {
             instance.PatchAll();
-            AlternativesManager.ValidateAlternatives();
             ReflectionFields.Init();
         }
     }

@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
     <!-- Example Diagonal Walls Patch -->
-    <!-- This patch adds building altenatives to wall -->
+    <!-- This patch adds building alternatives to wall -->
     <!-- <Operation Class="PatchOperationAdd">
-        <xpath>/Defs/ThingDef[defName="DiagonalWall30"]</xpath>
+        <xpath>/Defs/ThingDef[defName="Wall"]</xpath>
         <value>
             <modExtensions>
                 <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
                     <alternatives>
+                        <li>DiagonalWall30</li>
                         <li>DiagonalWall60</li>
                         <li>DiagonalWall120</li>
                         <li>DiagonalWall150</li>

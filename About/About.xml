@@ -18,6 +18,7 @@
   <loadAfter>
     <li>brrainz.harmony</li>
   </loadAfter>
-  <description>placeholder</description>
+  <description>A framework mod that enables modders to define alternative buildings for any structure. This is a framework mod that provides tools for other mods to implement building alternative, it doesn't add content on its own.
+  </description>
   <modVersion>1.0.0</modVersion>
 </ModMetaData>

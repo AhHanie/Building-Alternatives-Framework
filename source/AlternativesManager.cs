@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using RimWorld;
 using Verse;
 
@@ -45,30 +44,6 @@ namespace SK_Building_Alternatives_Framework
             }
 
             return designators;
-        }
-
-        public static void ValidateAlternatives()
-        {
-            var allThingDefs = DefDatabase<ThingDef>.AllDefs.ToList();
-
-            foreach (var thingDef in allThingDefs)
-            {
-                var extension = thingDef.GetModExtension<AlternativesModExtension>();
-                if (extension?.alternatives == null) continue;
-
-                for (int i = extension.alternatives.Count - 1; i >= 0; i--)
-                {
-                    if (extension.alternatives[i] == null)
-                    {
-                        Log.Warning($"[Building Alternatives Framework] ThingDef {thingDef.defName} has null alternative at index {i}");
-                        extension.alternatives.RemoveAt(i);
-                    }
-                    else if (!extension.alternatives[i].BuildableByPlayer)
-                    {
-                        Log.Warning($"[Building Alternatives Framework] ThingDef {thingDef.defName} has alternative {extension.alternatives[i].defName} that is not buildable by player");
-                    }
-                }
-            }
         }
     }
 }

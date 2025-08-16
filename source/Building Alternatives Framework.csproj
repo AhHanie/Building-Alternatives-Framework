@@ -74,6 +74,7 @@
     <Compile Include="BuildAlternativesHelper.cs" />
     <Compile Include="Dialog_BuildAlternatives.cs" />
     <Compile Include="HarmonyPatches.cs" />
+    <Compile Include="HideFromGUIModExtension .cs" />
     <Compile Include="Mod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReflectionFields.cs" />

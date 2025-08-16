@@ -481,18 +481,15 @@ namespace SK_Building_Alternatives_Framework
                     if (Event.current.button == 0)
                     {
                         SelectAlternative(designator);
-                        Event.current.Use();
                     }
                     else if (Event.current.button == 1)
                     {
                         HandleRightClick(designator);
-                        Event.current.Use();
                     }
                 }
                 else
                 {
                     HandleDesignatorClick(designator);
-                    Event.current.Use();
                 }
             }
 
@@ -524,19 +521,7 @@ namespace SK_Building_Alternatives_Framework
 
         private void HandleDesignatorClick(Designator_Build designator)
         {
-            // Check if this is a stuff-based building that needs material selection
-            if (designator.PlacingDef is ThingDef thingDef && thingDef.MadeFromStuff)
-            {
-                DesignatorManager_Select_Patch.disablePostfix = true;
-                // For stuff-based buildings without pre-selected stuff, call ProcessInput to show the float menu
-                designator.ProcessInput(Event.current);
-                DesignatorManager_Select_Patch.disablePostfix = false;
-            }
-            else
-            {
-                // For non-stuff buildings or buildings with pre-selected stuff, select directly
-                SelectAlternative(designator);
-            }
+            SelectAlternative(designator);
         }
 
         private void HandleRightClick(Designator_Build designator)

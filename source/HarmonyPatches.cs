@@ -125,4 +125,45 @@ namespace SK_Building_Alternatives_Framework
             return true;
         }
     }
+
+    [HarmonyPatch(typeof(ArchitectCategoryTab), "DesignationTabOnGUI")]
+    public static class ArchitectCategoryTab_DesignationTabOnGUI_Patch
+    {
+        public static bool IsDrawingGUI { get; set; }
+        public static void Prefix()
+        {
+            IsDrawingGUI = true;
+        }
+
+        public static void Postfix()
+        {
+            IsDrawingGUI = false;
+        }
+    }
+
+    [HarmonyPatch(typeof(DesignationCategoryDef), "get_ResolvedAllowedDesignators")]
+    public static class DesignationCategoryDef_ResolvedAllowedDesignators_Patch
+    {
+        public static void Postfix(ref IEnumerable<Designator> __result)
+        {
+            // Only filter when drawing the GUI
+            if (!ArchitectCategoryTab_DesignationTabOnGUI_Patch.IsDrawingGUI)
+                return;
+
+            __result = __result.Where(designator =>
+            {
+                // Check if this is a build designator and should be hidden
+                if (designator is Designator_Build buildDesignator)
+                {
+                    HideFromGUIModExtension ext = buildDesignator.PlacingDef.GetModExtension<HideFromGUIModExtension>();
+                    if (ext != null)
+                    {
+                        return false;
+                    }
+                }
+
+                return true;
+            });
+        }
+    }
 }
