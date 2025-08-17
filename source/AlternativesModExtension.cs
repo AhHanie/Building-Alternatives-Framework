@@ -6,7 +6,7 @@ namespace SK_Building_Alternatives_Framework
 {
     public class AlternativesModExtension : DefModExtension
     {
-        public List<ThingDef> alternatives;
+        public List<BuildableDef> alternatives;
         public string uiIconPath;
         public string hoverUiIconPath;
         private Texture2D _uiIcon;

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+    <SettingsMenu.KeyBindingsSection.Title>Keybindings</SettingsMenu.KeyBindingsSection.Title>
+    <SettingsMenu.KeyBindingsSection.Button.CycleNext.Label>Cycle to Next Alternative:</SettingsMenu.KeyBindingsSection.Button.CycleNext.Label>
+    <SettingsMenu.KeyBindingsSection.Button.CyclePrevious.Label>Cycle to Previous Alternative:</SettingsMenu.KeyBindingsSection.Button.CyclePrevious.Label>
+    <SettingsMenu.KeyBindingsSection.Button.NavigationKey.Label>Navigation Modifier Key:</SettingsMenu.KeyBindingsSection.Button.NavigationKey.Label>
+    <SettingsMenu.KeyBindingsSection.Button.ClearKey.Label>Clear</SettingsMenu.KeyBindingsSection.Button.ClearKey.Label>
+    <SettingsMenu.KeyBindingsSection.Button.CapturingKey.Label>Press any key...</SettingsMenu.KeyBindingsSection.Button.CapturingKey.Label>
+    <SettingsMenu.Button.ResetDefaults>Reset to Defaults</SettingsMenu.Button.ResetDefaults>
+    <SettingsMenu.Overlay.Instructions.PressKey>Press a key to assign to {0}</SettingsMenu.Overlay.Instructions.PressKey>
+    <SettingsMenu.Overlay.Instructions.EscapeKey>Press Escape to cancel</SettingsMenu.Overlay.Instructions.EscapeKey>
+</LanguageData>

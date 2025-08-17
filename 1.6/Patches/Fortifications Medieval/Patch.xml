@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- ========================================================================================== -->
+<!-- BUILDING ALTERNATIVES FOR Fortifications - Medieval -->
+<!-- ========================================================================================== -->
+
+<Patch>
+    <Operation Class="PatchOperationFindMod">
+        <mods>
+            <li>Fortifications - Medieval</li>
+        </mods>
+        <match Class="PatchOperationSequence">
+            <operations>
+                <!-- Add alternatives to Castle Wall (primary wall building) -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="FT_CastleWall"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <alternatives>
+                                    <li>FT_CastleWallEmbrasures</li>
+                                </alternatives>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Hide Castle Wall Embrasures from architect menu -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="FT_CastleWallEmbrasures"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.HideFromGUIModExtension" />
+                        </modExtensions>
+                    </value>
+                </li>
+            </operations>
+        </match>
+    </Operation>
+</Patch>

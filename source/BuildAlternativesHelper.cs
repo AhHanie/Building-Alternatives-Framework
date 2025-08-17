@@ -18,17 +18,17 @@ namespace SK_Building_Alternatives_Framework
             return extension.alternatives.Any(alt => IsVisible(alt));
         }
 
-        public static List<ThingDef> GetAlternatives(this BuildableDef def)
+        public static List<BuildableDef> GetAlternatives(this BuildableDef def)
         {
             var extension = def.GetModExtension<AlternativesModExtension>();
             if (extension?.alternatives == null)
-                return new List<ThingDef>();
+                return new List<BuildableDef>();
 
             // Filter alternatives to only include visible ones
             return extension.alternatives.Where(alt => IsVisible(alt)).ToList();
         }
 
-        private static bool IsVisible(ThingDef thingDef)
+        private static bool IsVisible(BuildableDef thingDef)
         {
             var tempDesignator = new Designator_Build(thingDef);
             return tempDesignator.Visible;

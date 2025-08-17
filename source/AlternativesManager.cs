@@ -6,14 +6,14 @@ namespace SK_Building_Alternatives_Framework
 {
     public static class AlternativesManager
     {
-        private static Dictionary<BuildableDef, List<ThingDef>> cachedAlternatives = new Dictionary<BuildableDef, List<ThingDef>>();
+        private static Dictionary<BuildableDef, List<BuildableDef>> cachedAlternatives = new Dictionary<BuildableDef, List<BuildableDef>>();
 
         public static void ClearCache()
         {
             cachedAlternatives.Clear();
         }
 
-        public static List<ThingDef> GetCachedAlternatives(BuildableDef def)
+        public static List<BuildableDef> GetCachedAlternatives(BuildableDef def)
         {
             if (cachedAlternatives.TryGetValue(def, out var cached))
             {

@@ -17,7 +17,7 @@ namespace SK_Building_Alternatives_Framework
 
         private bool isNavigating = false;
         private int highlightedIndex = -1;
-        private bool wasCtrlPressed = false;
+        private bool wasModifierKeyPressed = false;
         private float lastNavigationTime = 0f;
         private const float NAVIGATION_THROTTLE_TIME = 0.1f; // Minimum time between navigation steps (in seconds)
 
@@ -109,21 +109,21 @@ namespace SK_Building_Alternatives_Framework
 
         private void HandleNavigationInput(Rect inRect)
         {
-            bool isCtrlPressed = Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl);
+            bool isModifierKeyPressed = Input.GetKey(Settings.navigationModifierKey);
 
             // Check if Ctrl was just pressed (start navigation)
-            if (isCtrlPressed && !wasCtrlPressed)
+            if (isModifierKeyPressed && !wasModifierKeyPressed)
             {
                 StartNavigation();
             }
             // Check if Ctrl was just released (end navigation and select)
-            else if (!isCtrlPressed && wasCtrlPressed && isNavigating)
+            else if (!isModifierKeyPressed && wasModifierKeyPressed && isNavigating)
             {
                 EndNavigationAndSelect();
             }
 
             // Handle scroll events while Ctrl is pressed - use Input.GetAxis for global scroll detection
-            if (isNavigating && isCtrlPressed)
+            if (isNavigating && isModifierKeyPressed)
             {
                 float scroll = Input.GetAxis("Mouse ScrollWheel");
                 if (Mathf.Abs(scroll) > 0.05f && Time.realtimeSinceStartup - lastNavigationTime > NAVIGATION_THROTTLE_TIME)
@@ -139,7 +139,7 @@ namespace SK_Building_Alternatives_Framework
                 }
             }
 
-            wasCtrlPressed = isCtrlPressed;
+            wasModifierKeyPressed = isModifierKeyPressed;
         }
 
         private void StartNavigation()

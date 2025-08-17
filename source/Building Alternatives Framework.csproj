@@ -69,6 +69,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlternativesCycler.cs" />
     <Compile Include="AlternativesManager.cs" />
     <Compile Include="AlternativesModExtension.cs" />
     <Compile Include="BuildAlternativesHelper.cs" />
@@ -76,9 +77,11 @@
     <Compile Include="HarmonyPatches.cs" />
     <Compile Include="HideFromGUIModExtension .cs" />
     <Compile Include="Mod.cs" />
+    <Compile Include="ModSettingsWindow.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReflectionFields.cs" />
     <Compile Include="Resources.cs" />
+    <Compile Include="Settings.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Patches\" />

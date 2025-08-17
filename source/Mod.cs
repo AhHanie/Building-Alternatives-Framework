@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using UnityEngine;
 using Verse;
 
 namespace SK_Building_Alternatives_Framework
@@ -16,8 +17,19 @@ namespace SK_Building_Alternatives_Framework
 
         public void Init()
         {
+            GetSettings<Settings>();
             instance.PatchAll();
             ReflectionFields.Init();
+        }
+
+        public override string SettingsCategory()
+        {
+            return "Building Alternatives Framework";
+        }
+
+        public override void DoSettingsWindowContents(Rect rect)
+        {
+            ModSettingsWindow.Draw(rect);
         }
     }
 }

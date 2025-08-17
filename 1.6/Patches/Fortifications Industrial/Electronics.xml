@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- ========================================================================================== -->
+<!-- ELECTRONICS/COMMUNICATION ALTERNATIVES FOR FORTIFICATIONS - INDUSTRIAL -->
+<!-- ========================================================================================== -->
+
+<Patch>
+    <Operation Class="PatchOperationFindMod">
+        <mods>
+            <li>Fortifications - Industrial</li>
+        </mods>
+        <match Class="PatchOperationSequence">
+            <operations>
+                <!-- Add alternatives to the primary communication device (radio) -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="FT_Radio"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <alternatives>
+                                    <li>FT_AntennaTower</li>
+                                </alternatives>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Hide antenna tower from architect menu -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="FT_AntennaTower"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.HideFromGUIModExtension" />
+                        </modExtensions>
+                    </value>
+                </li>
+            </operations>
+        </match>
+    </Operation>
+</Patch>

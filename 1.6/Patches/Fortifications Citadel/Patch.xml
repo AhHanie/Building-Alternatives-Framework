@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ========================================================================================== -->
+<!-- BUILDING ALTERNATIVES FOR Fortification Industrial - Citadel -->
+<!-- ========================================================================================== -->
+<Patch>
+    <Operation Class="PatchOperationFindMod">
+        <mods>
+            <li>Fortification Industrial - Citadel</li>
+        </mods>
+        <match Class="PatchOperationSequence">
+            <operations>
+
+                <!-- =============================================================== -->
+                <!-- EXTERIOR WALL ALTERNATIVES (Palisades) -->
+                <!-- =============================================================== -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="FT_Stony_Palisade"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <alternatives>
+                                    <li>FT_Stony_Palisade_Corner</li>
+                                    <li>FT_Stony_Palisade_Embrasures</li>
+                                    <li>FT_Stony_Palisade_CornerEmbrasures</li>
+                                </alternatives>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Hide palisade alternatives from architect menu -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="FT_Stony_Palisade_Corner"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.HideFromGUIModExtension" />
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="FT_Stony_Palisade_Embrasures"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.HideFromGUIModExtension" />
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="FT_Stony_Palisade_CornerEmbrasures"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.HideFromGUIModExtension" />
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- =============================================================== -->
+                <!-- CITADEL WALL ALTERNATIVES -->
+                <!-- =============================================================== -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="FTC_CitadelWall"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <alternatives>
+                                    <li>FTC_CitadelWall_Embrasure</li>
+                                </alternatives>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Hide citadel wall embrasure from architect menu -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="FTC_CitadelWall_Embrasure"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.HideFromGUIModExtension" />
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- =============================================================== -->
+                <!-- SANDBAG ALTERNATIVES -->
+                <!-- =============================================================== -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="FTC_SandBag1x2c"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <alternatives>
+                                    <li>FTC_SandBag2x2c</li>
+                                </alternatives>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Hide 2x2 sandbag from architect menu -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="FTC_SandBag2x2c"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.HideFromGUIModExtension" />
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- =============================================================== -->
+                <!-- FLOOR DECORATION ALTERNATIVES -->
+                <!-- =============================================================== -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="FTC_FloorDeco"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <alternatives>
+                                    <li>FTC_FloorDecoB</li>
+                                    <li>FTC_FloorDecoC</li>
+                                    <li>FTC_FloorDeco_D</li>
+                                    <li>FTC_FloorDecoB_D</li>
+                                    <li>FTC_FloorDecoC_D</li>
+                                </alternatives>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Hide floor decoration alternatives from architect menu -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="FTC_FloorDecoB"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.HideFromGUIModExtension" />
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="FTC_FloorDecoC"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.HideFromGUIModExtension" />
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="FTC_FloorDeco_D"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.HideFromGUIModExtension" />
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="FTC_FloorDecoB_D"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.HideFromGUIModExtension" />
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="FTC_FloorDecoC_D"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.HideFromGUIModExtension" />
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- =============================================================== -->
+                <!-- DECOY FACILITY ALTERNATIVES -->
+                <!-- =============================================================== -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="FTC_InfrasonicDecoy"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <alternatives>
+                                    <li>FTC_SignalDecoy</li>
+                                    <li>FTC_EnegryDecoy</li>
+                                </alternatives>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Hide decoy facility alternatives from architect menu -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="FTC_SignalDecoy"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.HideFromGUIModExtension" />
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="FTC_EnegryDecoy"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.HideFromGUIModExtension" />
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- =============================================================== -->
+                <!-- HEAVY PRODUCTION ALTERNATIVES -->
+                <!-- =============================================================== -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="FT_ArcFurnace"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <alternatives>
+                                    <li>FT_HeavyChem</li>
+                                </alternatives>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Hide heavy chem from architect menu -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="FT_HeavyChem"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.HideFromGUIModExtension" />
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- =============================================================== -->
+                <!-- BUNKER TURRET ALTERNATIVES -->
+                <!-- =============================================================== -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="FTC_Bunker_Turret"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <alternatives>
+                                    <li>FTC_Autocannon_Bunker</li>
+                                    <li>FTC_AntiTank_Turret</li>
+                                    <li>FTC_Batterey_Turret</li>
+                                    <li>FTC_Mortar_Bunker</li>
+                                </alternatives>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Hide bunker turret alternatives from architect menu -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="FTC_Autocannon_Bunker"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.HideFromGUIModExtension" />
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="FTC_AntiTank_Turret"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.HideFromGUIModExtension" />
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="FTC_Batterey_Turret"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.HideFromGUIModExtension" />
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="FTC_Mortar_Bunker"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.HideFromGUIModExtension" />
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- =============================================================== -->
+                <!-- WALL-MOUNTED BUNKER ALTERNATIVES -->
+                <!-- =============================================================== -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="FTC_Wall_MG"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <alternatives>
+                                    <li>FTC_Wall_Flame</li>
+                                    <li>FTC_Wall_AT</li>
+                                    <li>FTC_Wall_Howitzer</li>
+                                </alternatives>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Hide wall-mounted bunker alternatives from architect menu -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="FTC_Wall_Flame"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.HideFromGUIModExtension" />
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="FTC_Wall_AT"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.HideFromGUIModExtension" />
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="FTC_Wall_Howitzer"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.HideFromGUIModExtension" />
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- =============================================================== -->
+                <!-- STANDALONE TURRET ALTERNATIVES -->
+                <!-- =============================================================== -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="FTC_TwinMG_Turret"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <alternatives>
+                                    <li>FTC_Autocannon_Turret</li>
+                                    <li>FTC_Katyusha_Turret</li>
+                                    <li>FTC_TurretTwinHeavyFlak</li>
+                                </alternatives>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Hide standalone turret alternatives from architect menu -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="FTC_Autocannon_Turret"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.HideFromGUIModExtension" />
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="FTC_Katyusha_Turret"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.HideFromGUIModExtension" />
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="FTC_TurretTwinHeavyFlak"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.HideFromGUIModExtension" />
+                        </modExtensions>
+                    </value>
+                </li>
+
+            </operations>
+        </match>
+    </Operation>
+</Patch>

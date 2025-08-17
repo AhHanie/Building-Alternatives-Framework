@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using HarmonyLib;
+using RimWorld;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using HarmonyLib;
-using RimWorld;
+using System.Security.Cryptography;
 using UnityEngine;
 using Verse;
 
@@ -96,11 +97,15 @@ namespace SK_Building_Alternatives_Framework
     public static class DesignatorManager_Select_Patch
     {
         public static bool disablePostfix = false;
-        public static void Postfix()
+        public static void Postfix(Designator des)
         {
             if (disablePostfix)
             {
                 return;
+            }
+            if (des is Designator_Build buildDesignator)
+            {
+                AlternativesCycler.OnDesignatorSelected(buildDesignator);
             }
             var buildAlternativesDialog = Find.WindowStack.Windows.FirstOrDefault(w => w is Dialog_BuildAlternatives);
             buildAlternativesDialog?.Close();
@@ -164,6 +169,39 @@ namespace SK_Building_Alternatives_Framework
 
                 return true;
             });
+        }
+    }
+
+    [HarmonyPatch(typeof(DesignatorManager), "ProcessInputEvents")]
+    public static class DesignatorManager_ProcessInputEvents_Patch
+    {
+        public static void Postfix()
+        {
+            HandleAlternativesCycling();
+        }
+
+        private static void HandleAlternativesCycling()
+        {
+            if (Event.current.type != EventType.KeyDown)
+                return;
+
+            bool keyHandled = false;
+
+            if (Event.current.keyCode == Settings.cycleNextKey && !Event.current.control && !Event.current.alt && !Event.current.shift)
+            {
+                AlternativesCycler.CycleToNextAlternative();
+                keyHandled = true;
+            }
+            else if (Event.current.keyCode == Settings.cyclePreviousKey && !Event.current.control && !Event.current.alt && !Event.current.shift)
+            {
+                AlternativesCycler.CycleToPreviousAlternative();
+                keyHandled = true;
+            }
+
+            if (keyHandled)
+            {
+                Event.current.Use();
+            }
         }
     }
 }
