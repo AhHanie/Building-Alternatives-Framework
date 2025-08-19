@@ -25,7 +25,6 @@ namespace SK_Building_Alternatives_Framework
 
             float curY = 0f;
 
-            // Keybinding Section
             DrawSectionHeader(ref curY, contentRect.width, "SettingsMenu.KeyBindingsSection.Title".Translate());
 
             DrawKeybindingSetting(ref curY, contentRect.width, "SettingsMenu.KeyBindingsSection.Button.CycleNext.Label".Translate(),
@@ -39,10 +38,8 @@ namespace SK_Building_Alternatives_Framework
 
             curY += SECTION_SPACING;
 
-            // Action Buttons
             DrawActionButtons(ref curY, contentRect.width);
 
-            // Key capture overlay
             if (isCapturingKey)
             {
                 DrawKeyCaptureOverlay(parent);
@@ -50,20 +47,18 @@ namespace SK_Building_Alternatives_Framework
 
             Widgets.EndScrollView();
 
-            // Handle key capture input
             HandleKeyCaptureInput();
         }
 
         private static void DrawSectionHeader(ref float curY, float width, string title)
         {
             Text.Font = GameFont.Medium;
-            var headerRect = new Rect(0f, curY, width, 25f);
+            var headerRect = new Rect(0f, curY, width, 30f);
             Widgets.Label(headerRect, title);
 
-            // Draw separator line with more spacing
-            Widgets.DrawLineHorizontal(0f, curY + 25f, width);
+            Widgets.DrawLineHorizontal(0f, curY + 35f, width);
 
-            curY += 45f; // Increased spacing between line and content
+            curY += 55f;
             Text.Font = GameFont.Small;
         }
 
@@ -96,7 +91,6 @@ namespace SK_Building_Alternatives_Framework
 
             GUI.color = Color.white;
 
-            // Add clear button
             var clearButtonRect = new Rect(buttonRect.xMax + 5f, curY, 50f, ROW_HEIGHT);
             if (Widgets.ButtonText(clearButtonRect, "SettingsMenu.KeyBindingsSection.Button.ClearKey.Label".Translate()))
             {
@@ -124,11 +118,9 @@ namespace SK_Building_Alternatives_Framework
 
         private static void DrawKeyCaptureOverlay(Rect parent)
         {
-            // Draw semi-transparent overlay
             var overlayRect = new Rect(0f, 0f, parent.width, parent.height);
             Widgets.DrawBoxSolid(overlayRect, new Color(0f, 0f, 0f, 0.5f));
 
-            // Draw instruction text
             Text.Font = GameFont.Medium;
             Text.Anchor = TextAnchor.MiddleCenter;
             var textRect = new Rect(0f, parent.height / 2 - 50f, parent.width, 100f);
@@ -170,7 +162,6 @@ namespace SK_Building_Alternatives_Framework
 
             KeyCode pressedKey = Event.current.keyCode;
 
-            // Cancel capture on Escape
             if (pressedKey == KeyCode.Escape)
             {
                 StopKeyCapture();
@@ -178,13 +169,11 @@ namespace SK_Building_Alternatives_Framework
                 return;
             }
 
-            // Ignore modifier-only keys for main actions (but allow them for modifier key setting)
             if (capturingKeyFor != "navigationModifier" && IsModifierOnlyKey(pressedKey))
             {
                 return;
             }
 
-            // Assign the key
             switch (capturingKeyFor)
             {
                 case "cycleNext":
@@ -215,19 +204,17 @@ namespace SK_Building_Alternatives_Framework
         {
             // Calculate total height needed for all content
             float height = 0f; // No title
-            height += 45f + (ROW_HEIGHT + 5f) * 3 + SECTION_SPACING; // Keybindings section with increased spacing
+            height += 55f + (ROW_HEIGHT + 5f) * 3 + SECTION_SPACING; // Keybindings section with increased spacing
             height += 40f; // Action buttons
             height += 20f; // Extra padding
             return height;
         }
 
-        // Helper method to check if a specific key is pressed (for use in other parts of the mod)
         public static bool IsKeyPressed(KeyCode key)
         {
             return Input.GetKeyDown(key);
         }
 
-        // Helper method to check if navigation modifier is pressed
         public static bool IsNavigationModifierPressed()
         {
             return Input.GetKey(Settings.navigationModifierKey) ||
