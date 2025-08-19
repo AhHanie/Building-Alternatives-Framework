@@ -10,22 +10,42 @@ namespace SK_Building_Alternatives_Framework
     {
         public static bool HasAlternatives(this BuildableDef def)
         {
-            var extension = def.GetModExtension<AlternativesModExtension>();
-            if (extension?.alternatives == null || extension.alternatives.Count == 0)
+            List<BuildableDef> alternatives = AlternativesManager.GetCachedAlternatives(def.GetAlternativeListTag());
+            if (alternatives == null || alternatives.Count == 0)
                 return false;
 
             // Check if any alternatives are actually available (visible)
-            return extension.alternatives.Any(alt => IsVisible(alt));
+            return alternatives.Any(alt => IsVisible(alt));
         }
 
         public static List<BuildableDef> GetAlternatives(this BuildableDef def)
         {
-            var extension = def.GetModExtension<AlternativesModExtension>();
-            if (extension?.alternatives == null)
+            List<BuildableDef> alternatives = AlternativesManager.GetCachedAlternatives(def.GetAlternativeListTag());
+            if (alternatives == null)
                 return new List<BuildableDef>();
 
             // Filter alternatives to only include visible ones
-            return extension.alternatives.Where(alt => IsVisible(alt)).ToList();
+            return alternatives.Where(alt => IsVisible(alt)).ToList();
+        }
+
+        public static bool IsHiddenFromGUI(this BuildableDef def)
+        {
+            AlternativesModExtension extension = AlternativesManager.GetModExtension(def);
+            if (extension == null)
+            {
+                return false;
+            }
+            return extension.hideFromGUI && !extension.isMaster;
+        }
+
+        public static string GetAlternativeListTag(this BuildableDef def)
+        {
+            AlternativesModExtension extension = AlternativesManager.GetModExtension(def);
+            if (extension == null)
+            {
+                return null;
+            }
+            return extension.tag;
         }
 
         private static bool IsVisible(BuildableDef thingDef)
@@ -36,7 +56,7 @@ namespace SK_Building_Alternatives_Framework
 
         public static (Texture2D, Texture2D) GetUIIcons(this BuildableDef def)
         {
-            var extension = def.GetModExtension<AlternativesModExtension>();
+            var extension = AlternativesManager.GetModExtension(def);
             if (extension == null)
             {
                 return (Resources.DefaultAltButtonIcon, Resources.DefaultAltButtonIconSelected);

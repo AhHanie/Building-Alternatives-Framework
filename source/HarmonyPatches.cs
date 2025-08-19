@@ -160,11 +160,7 @@ namespace SK_Building_Alternatives_Framework
                 // Check if this is a build designator and should be hidden
                 if (designator is Designator_Build buildDesignator)
                 {
-                    HideFromGUIModExtension ext = buildDesignator.PlacingDef.GetModExtension<HideFromGUIModExtension>();
-                    if (ext != null)
-                    {
-                        return false;
-                    }
+                    return !buildDesignator.PlacingDef.IsHiddenFromGUI();
                 }
 
                 return true;

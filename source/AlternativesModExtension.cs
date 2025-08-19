@@ -6,18 +6,22 @@ namespace SK_Building_Alternatives_Framework
 {
     public class AlternativesModExtension : DefModExtension
     {
-        public List<BuildableDef> alternatives;
         public string uiIconPath;
         public string hoverUiIconPath;
+        public bool isMaster;
+        public bool hideFromGUI;
+        public string tag;
         private Texture2D _uiIcon;
         private Texture2D _hoverUiIcon;
         private bool _iconsInitialized = false;
 
         public AlternativesModExtension()
         {
-            alternatives = null;
             uiIconPath = null;
             hoverUiIconPath = null;
+            isMaster = false;
+            hideFromGUI = false;
+            tag = null;
         }
 
         public Texture2D UiIcon

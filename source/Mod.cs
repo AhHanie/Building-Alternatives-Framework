@@ -20,6 +20,7 @@ namespace SK_Building_Alternatives_Framework
             GetSettings<Settings>();
             instance.PatchAll();
             ReflectionFields.Init();
+            AlternativesManager.Init();
         }
 
         public override string SettingsCategory()

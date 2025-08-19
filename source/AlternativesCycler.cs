@@ -100,7 +100,7 @@ namespace SK_Building_Alternatives_Framework
 
         private static List<BuildableDef> GetAllAlternativesIncludingOriginal(BuildableDef originalDef)
         {
-            var alternatives = AlternativesManager.GetCachedAlternatives(originalDef);
+            var alternatives = AlternativesManager.GetCachedAlternatives(originalDef.GetAlternativeListTag());
             var allAlternatives = new List<BuildableDef> { originalDef };
             allAlternatives.AddRange(alternatives);
             return allAlternatives;

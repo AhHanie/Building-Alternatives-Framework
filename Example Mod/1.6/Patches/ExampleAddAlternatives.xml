@@ -1,29 +1,211 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
     <!-- This patch adds building altenatives to wall -->
-    <Operation Class="PatchOperationAdd">
-        <xpath>/Defs/ThingDef[defName="Wall"]</xpath>
-        <value>
-            <modExtensions>
-                <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
-                    <alternatives>
-                        <li>Door</li>
-                        <li>Fence</li>
-                        <li>FenceGate</li>
-                        <li>FueledStove</li>
-                        <li>SteleLarge</li>
-                        <li>Bed</li>
-                        <li>SleepingSpot</li>
-                        <li>RoyalBed</li>
-                        <li>HospitalBed</li>
-                        <li>Bedroll</li>
-                        <li>Stool</li>
-                        <li>DiningChair</li>
-                    </alternatives>
-                    <uiIconPath>UI/List</uiIconPath>                    <!-- Optional UI Icon -->
-                    <hoverUiIconPath>UI/ListSelected</hoverUiIconPath>                    <!-- Optional Hover UI Icon -->
-                </li>
-            </modExtensions>
-        </value>
+
+    <!-- Example patching unrelated things in a single list -->
+    <Operation Class="PatchOperationSequence">
+        <operations>
+            <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="Fence"]</xpath>
+                <value>
+                    <modExtensions>
+                        <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                            <tag>CoolStuff</tag>
+                            <isMaster>true</isMaster>
+                        </li>
+                    </modExtensions>
+                </value>
+            </li>
+            <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="FenceGate"]</xpath>
+                <value>
+                    <modExtensions>
+                        <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                            <tag>CoolStuff</tag>
+                            <isMaster>false</isMaster>
+                            <hideFromGUI>true</hideFromGUI>                            <!-- used to hide building from Architect Menu -->
+                        </li>
+                    </modExtensions>
+                </value>
+            </li>
+            <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="FueledStove"]</xpath>
+                <value>
+                    <modExtensions>
+                        <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                            <tag>CoolStuff</tag>
+                            <isMaster>false</isMaster>
+                            <hideFromGUI>true</hideFromGUI>
+                        </li>
+                    </modExtensions>
+                </value>
+            </li>
+            <!-- This will also add any children to bed to the list -->
+            <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="Bed"]</xpath>
+                <value>
+                    <modExtensions>
+                        <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                            <tag>CoolStuff</tag>
+                            <isMaster>false</isMaster>
+                            <hideFromGUI>true</hideFromGUI>
+                        </li>
+                    </modExtensions>
+                </value>
+            </li>
+            <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="RoyalBed"]</xpath>
+                <value>
+                    <modExtensions>
+                        <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                            <tag>CoolStuff</tag>
+                            <isMaster>false</isMaster>
+                            <hideFromGUI>true</hideFromGUI>
+                        </li>
+                    </modExtensions>
+                </value>
+            </li>
+            <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="HospitalBed"]</xpath>
+                <value>
+                    <modExtensions>
+                        <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                            <tag>CoolStuff</tag>
+                            <isMaster>false</isMaster>
+                            <hideFromGUI>true</hideFromGUI>
+                        </li>
+                    </modExtensions>
+                </value>
+            </li>
+            <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="SleepingSpot"]</xpath>
+                <value>
+                    <modExtensions>
+                        <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                            <tag>CoolStuff</tag>
+                            <isMaster>false</isMaster>
+                            <hideFromGUI>true</hideFromGUI>
+                        </li>
+                    </modExtensions>
+                </value>
+            </li>
+            <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="SteleLarge"]</xpath>
+                <value>
+                    <modExtensions>
+                        <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                            <tag>CoolStuff</tag>
+                            <isMaster>false</isMaster>
+                            <hideFromGUI>true</hideFromGUI>
+                        </li>
+                    </modExtensions>
+                </value>
+            </li>
+            <!-- This will also add any children to door to the list -->
+            <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="Door"]</xpath>
+                <value>
+                    <modExtensions>
+                        <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                            <tag>CoolStuff</tag>
+                            <isMaster>false</isMaster>
+                            <hideFromGUI>true</hideFromGUI>
+                        </li>
+                    </modExtensions>
+                </value>
+            </li>
+            <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="Autodoor"]</xpath>
+                <value>
+                    <modExtensions>
+                        <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                            <tag>CoolStuff</tag>
+                            <isMaster>false</isMaster>
+                            <hideFromGUI>true</hideFromGUI>
+                        </li>
+                    </modExtensions>
+                </value>
+            </li>
+            <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="OrnateDoor"]</xpath>
+                <value>
+                    <modExtensions>
+                        <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                            <tag>CoolStuff</tag>
+                            <isMaster>false</isMaster>
+                            <hideFromGUI>true</hideFromGUI>
+                        </li>
+                    </modExtensions>
+                </value>
+            </li>
+        </operations>
+    </Operation>
+
+    <!-- Example patching a parent and separating its children into different lists -->
+    <Operation Class="PatchOperationSequence">
+        <operations>
+            <!-- In list: Walls -->
+            <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="Wall"]</xpath>
+                <value>
+                    <modExtensions>
+                        <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                            <tag>Walls</tag>
+                            <uiIconPath>UI/List</uiIconPath>                            <!-- Optional UI Icon -->
+                            <hoverUiIconPath>UI/ListSelected</hoverUiIconPath>                            <!-- Optional Hover UI Icon -->
+                            <isMaster>true</isMaster>
+                        </li>
+                    </modExtensions>
+                </value>
+            </li>
+            <!-- In list: OdysseyWalls -->
+            <li Class="PatchOperationAdd" MayRequire="Ludeon.RimWorld.Odyssey">
+                <xpath>/Defs/ThingDef[defName="GravshipHull"]</xpath>
+                <value>
+                    <modExtensions>
+                        <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                            <tag>OdysseyWalls</tag>
+                            <isMaster>true</isMaster>
+                        </li>
+                    </modExtensions>
+                </value>
+            </li>
+            <!-- In list: UnbuildableOdysseyWalls -->
+            <li Class="PatchOperationAdd" MayRequire="Ludeon.RimWorld.Odyssey">
+                <xpath>/Defs/ThingDef[defName="AncientFortifiedWall"]</xpath>
+                <value>
+                    <modExtensions>
+                        <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                            <tag>UnbuildableOdysseyWalls</tag>
+                            <isMaster>false</isMaster>
+                        </li>
+                    </modExtensions>
+                </value>
+            </li>
+            <!-- In list: UnbuildableOdysseyWalls -->
+            <li Class="PatchOperationAdd" MayRequire="Ludeon.RimWorld.Odyssey">
+                <xpath>/Defs/ThingDef[defName="OrbitalAncientFortifiedWall"]</xpath>
+                <value>
+                    <modExtensions>
+                        <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                            <tag>UnbuildableOdysseyWalls</tag>
+                            <isMaster>false</isMaster>
+                        </li>
+                    </modExtensions>
+                </value>
+            </li>
+            <!-- In list: UnbuildableAnomalyWalls -->
+            <li Class="PatchOperationAdd" MayRequire="Ludeon.RimWorld.Anomaly">
+                <xpath>/Defs/ThingDef[defName="GrayWall"]</xpath>
+                <value>
+                    <modExtensions>
+                        <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                            <tag>UnbuildableAnomalyWalls</tag>
+                            <isMaster>true</isMaster>
+                        </li>
+                    </modExtensions>
+                </value>
+            </li>
+        </operations>
     </Operation>
 </Patch>
