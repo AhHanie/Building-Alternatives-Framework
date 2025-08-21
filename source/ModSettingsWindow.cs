@@ -39,7 +39,6 @@ namespace SK_Building_Alternatives_Framework
 
             curY += SECTION_SPACING;
 
-            // Dev mode section
             if (Prefs.DevMode)
             {
                 DrawDevModeSection(ref curY, contentRect.width);
@@ -62,7 +61,6 @@ namespace SK_Building_Alternatives_Framework
         {
             DrawSectionHeader(ref curY, width, "SettingsMenu.DevToolsSection.Title".Translate());
 
-            // Search input
             var searchLabelRect = new Rect(INDENT, curY, LABEL_WIDTH, ROW_HEIGHT);
             var searchInputRect = new Rect(INDENT + LABEL_WIDTH, curY, 250f, ROW_HEIGHT);
             var searchButtonRect = new Rect(searchInputRect.xMax + 5f, curY, 150f, ROW_HEIGHT);
@@ -77,7 +75,6 @@ namespace SK_Building_Alternatives_Framework
 
             curY += ROW_HEIGHT + 5f;
 
-            // Instructions
             var instructionRect = new Rect(INDENT, curY, width - INDENT * 2, 40f);
             Text.Font = GameFont.Tiny;
             Widgets.Label(instructionRect, "SettingsMenu.DevToolsSection.Label.Instructions".Translate());

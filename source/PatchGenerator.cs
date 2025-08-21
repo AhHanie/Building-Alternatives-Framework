@@ -19,7 +19,6 @@ namespace SK_Building_Alternatives_Framework
 
             try
             {
-                // Get all buildable defs that match the search term
                 var matchingDefs = FindMatchingBuildableDefs(searchTerm);
 
                 if (!matchingDefs.Any())
@@ -28,13 +27,10 @@ namespace SK_Building_Alternatives_Framework
                     return;
                 }
 
-                // Generate the XML patch content
                 var xmlContent = GenerateXmlPatch(matchingDefs, searchTerm);
 
-                // Save the file
                 string filePath = SavePatchFile(xmlContent, searchTerm);
 
-                // Show success message
                 Messages.Message($"SettingsMenu.Messages.PatchSuccess".Translate(Path.GetFileName(filePath), matchingDefs.Count), MessageTypeDefOf.PositiveEvent);
                 Log.Message($"Building Alternatives Framework: Generated patch file at {filePath}");
             }
@@ -63,10 +59,8 @@ namespace SK_Building_Alternatives_Framework
 
             foreach (var def in defs)
             {
-                // Add the main mod extension
                 AddModExtensionOperation(sb, def, tag);
 
-                // Check if the def has a designatorDropdown and add remove operation if it does
                 if (def.designatorDropdown != null)
                 {
                     AddRemoveDesignatorDropdownOperation(sb, def);
@@ -115,14 +109,12 @@ namespace SK_Building_Alternatives_Framework
 
         private static string GenerateFileName(string searchTerm)
         {
-            // Sanitize the search term for use in filename
             string sanitizedTerm = SanitizeFileName(searchTerm);
             return $"BuildingAlternatives_{sanitizedTerm}_{System.DateTime.Now:yyyyMMdd_HHmmss}.xml";
         }
 
         private static string SanitizeFileName(string fileName)
         {
-            // Remove or replace invalid filename characters
             char[] invalidChars = Path.GetInvalidFileNameChars();
             foreach (char c in invalidChars)
             {
@@ -135,7 +127,6 @@ namespace SK_Building_Alternatives_Framework
         {
             try
             {
-                // Try the standard .NET method first (works on Windows, sometimes on Linux/Mac)
                 string desktopPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop);
                 if (!string.IsNullOrEmpty(desktopPath) && Directory.Exists(desktopPath))
                 {
@@ -144,37 +135,17 @@ namespace SK_Building_Alternatives_Framework
             }
             catch
             {
-                // Ignore and try alternatives
             }
 
-            // Cross-platform fallbacks
             return GetCrossPlatformDesktopPath();
         }
 
         private static string GetCrossPlatformDesktopPath()
         {
             string userProfile = System.Environment.GetFolderPath(System.Environment.SpecialFolder.UserProfile);
-            if (!string.IsNullOrEmpty(userProfile))
-            {
-                // Try common desktop folder names across different languages/systems
-                string[] desktopFolders = { "Desktop", "desktop", "Escritorio", "Bureau", "Рабочий стол" };
-                foreach (string folder in desktopFolders)
-                {
-                    string path = Path.Combine(userProfile, folder);
-                    if (Directory.Exists(path))
-                    {
-                        return path;
-                    }
-                }
-            }
-
-            // Final fallback - use user profile or current directory
             return !string.IsNullOrEmpty(userProfile) ? userProfile : Directory.GetCurrentDirectory();
         }
 
-        /// <summary>
-        /// Gets information about what would be generated without actually creating the file
-        /// </summary>
         public static PatchGenerationInfo GetPatchInfo(string searchTerm)
         {
             if (string.IsNullOrWhiteSpace(searchTerm))
