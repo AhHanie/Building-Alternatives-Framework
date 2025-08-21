@@ -9,4 +9,12 @@
     <SettingsMenu.Button.ResetDefaults>Reset to Defaults</SettingsMenu.Button.ResetDefaults>
     <SettingsMenu.Overlay.Instructions.PressKey>Press a key to assign to {0}</SettingsMenu.Overlay.Instructions.PressKey>
     <SettingsMenu.Overlay.Instructions.EscapeKey>Press Escape to cancel</SettingsMenu.Overlay.Instructions.EscapeKey>
+    <SettingsMenu.DevToolsSection.Title>Dev Tools</SettingsMenu.DevToolsSection.Title>
+    <SettingsMenu.DevToolsSection.Label.SearchBuildings>Search Buildings:</SettingsMenu.DevToolsSection.Label.SearchBuildings>
+    <SettingsMenu.DevToolsSection.Button.Label.GeneratePatch>Generate Patch</SettingsMenu.DevToolsSection.Button.Label.GeneratePatch>
+    <SettingsMenu.DevToolsSection.Label.Instructions>Enter a search term to find buildings and generate a patch file with alternatives framework. The patch will be saved to your desktop.</SettingsMenu.DevToolsSection.Label.Instructions>
+    <SettingsMenu.Messages.EmptyInput>Please enter a search term.</SettingsMenu.Messages.EmptyInput>
+    <SettingsMenu.Messages.NoResults>No buildable definitions found containing '{0}'.</SettingsMenu.Messages.NoResults>.
+    <SettingsMenu.Messages.PatchSuccess>Patch file generated: {0}\nFound {1} matching definitions..</SettingsMenu.Messages.PatchSuccess>
+    <SettingsMenu.Messages.PatchFail>Failed to generate patch file: {0}</SettingsMenu.Messages.PatchFail>
 </LanguageData>

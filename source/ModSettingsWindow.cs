@@ -9,6 +9,7 @@ namespace SK_Building_Alternatives_Framework
         private static Vector2 scrollPosition = Vector2.zero;
         private static bool isCapturingKey = false;
         private static string capturingKeyFor = "";
+        private static string devSearchText;
 
         // UI Constants
         private const float ROW_HEIGHT = 30f;
@@ -38,6 +39,13 @@ namespace SK_Building_Alternatives_Framework
 
             curY += SECTION_SPACING;
 
+            // Dev mode section
+            if (Prefs.DevMode)
+            {
+                DrawDevModeSection(ref curY, contentRect.width);
+                curY += SECTION_SPACING;
+            }
+
             DrawActionButtons(ref curY, contentRect.width);
 
             if (isCapturingKey)
@@ -48,6 +56,34 @@ namespace SK_Building_Alternatives_Framework
             Widgets.EndScrollView();
 
             HandleKeyCaptureInput();
+        }
+
+        private static void DrawDevModeSection(ref float curY, float width)
+        {
+            DrawSectionHeader(ref curY, width, "SettingsMenu.DevToolsSection.Title".Translate());
+
+            // Search input
+            var searchLabelRect = new Rect(INDENT, curY, LABEL_WIDTH, ROW_HEIGHT);
+            var searchInputRect = new Rect(INDENT + LABEL_WIDTH, curY, 250f, ROW_HEIGHT);
+            var searchButtonRect = new Rect(searchInputRect.xMax + 5f, curY, 150f, ROW_HEIGHT);
+
+            Widgets.Label(searchLabelRect, "SettingsMenu.DevToolsSection.Label.SearchBuildings".Translate());
+            devSearchText = Widgets.TextField(searchInputRect, devSearchText ?? "");
+
+            if (Widgets.ButtonText(searchButtonRect, "SettingsMenu.DevToolsSection.Button.Label.GeneratePatch".Translate()))
+            {
+                GeneratePatchFile(devSearchText);
+            }
+
+            curY += ROW_HEIGHT + 5f;
+
+            // Instructions
+            var instructionRect = new Rect(INDENT, curY, width - INDENT * 2, 40f);
+            Text.Font = GameFont.Tiny;
+            Widgets.Label(instructionRect, "SettingsMenu.DevToolsSection.Label.Instructions".Translate());
+            Text.Font = GameFont.Small;
+
+            curY += 45f;
         }
 
         private static void DrawSectionHeader(ref float curY, float width, string title)
@@ -200,11 +236,23 @@ namespace SK_Building_Alternatives_Framework
                    key == KeyCode.LeftWindows || key == KeyCode.RightWindows;
         }
 
+        private static void GeneratePatchFile(string searchTerm)
+        {
+            PatchGenerator.GeneratePatchFile(searchTerm);
+        }
+
         private static float GetContentHeight()
         {
             // Calculate total height needed for all content
-            float height = 0f; // No title
-            height += 55f + (ROW_HEIGHT + 5f) * 3 + SECTION_SPACING; // Keybindings section with increased spacing
+            float height = 0f;
+            height += 55f + (ROW_HEIGHT + 5f) * 3 + SECTION_SPACING; // Keybindings section
+
+            // Dev mode section (only if in dev mode)
+            if (Prefs.DevMode)
+            {
+                height += 55f + (ROW_HEIGHT + 5f) + 45f + SECTION_SPACING; // Dev section header + input row + instructions + spacing
+            }
+
             height += 40f; // Action buttons
             height += 20f; // Extra padding
             return height;
