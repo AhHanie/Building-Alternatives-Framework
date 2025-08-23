@@ -75,6 +75,7 @@
     <Compile Include="BuildAlternativesHelper.cs" />
     <Compile Include="Dialog_BuildAlternatives.cs" />
     <Compile Include="HarmonyPatches.cs" />
+    <Compile Include="KeycodeHelper.cs" />
     <Compile Include="Mod.cs" />
     <Compile Include="ModSettingsWindow.cs" />
     <Compile Include="PatchGenerator.cs" />

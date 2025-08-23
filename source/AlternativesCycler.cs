@@ -101,10 +101,24 @@ namespace SK_Building_Alternatives_Framework
         private static List<BuildableDef> GetAllAlternativesIncludingOriginal(BuildableDef originalDef)
         {
             var alternatives = AlternativesManager.GetCachedAlternatives(originalDef.GetAlternativeListTag());
-            var allAlternatives = new List<BuildableDef> { originalDef };
-            allAlternatives.AddRange(alternatives);
+            var allAlternatives = new List<BuildableDef>();
+
+            if (alternatives != null && alternatives.Contains(originalDef))
+            {
+                allAlternatives.AddRange(alternatives);
+            }
+            else
+            {
+                allAlternatives.Add(originalDef);
+                if (alternatives != null)
+                {
+                    allAlternatives.AddRange(alternatives);
+                }
+            }
+
             return allAlternatives;
         }
+
 
         private static int FindCurrentDesignatorIndex(List<BuildableDef> alternatives, Designator_Build currentDesignator)
         {

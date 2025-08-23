@@ -200,4 +200,34 @@ namespace SK_Building_Alternatives_Framework
             }
         }
     }
+
+    [HarmonyPatch(typeof(Designator_Build), "DrawPlaceMouseAttachments")]
+    public static class Designator_Build_DrawPlaceMouseAttachments_Patch
+    {
+        public static void Postfix(Designator_Build __instance, float curX, ref float curY)
+        {
+            if (!__instance.PlacingDef.HasAlternatives())
+                return;
+
+            // Don't show if we're in the architect menu info rect (would overlap with other UI)
+            if (ArchitectCategoryTab.InfoRect.Contains(UI.MousePositionOnUIInverted))
+                return;
+
+            string cyclingText = KeycodeHelper.GetCyclingInstructionText();
+
+            if (string.IsNullOrEmpty(cyclingText))
+                return;
+
+            Rect rect = new Rect(curX, curY, 9999f, Text.LineHeight);
+
+            // Set text color to a subtle color to differentiate from cost info
+            GUI.color = new Color(0.8f, 0.9f, 1f, 0.8f);
+
+            Widgets.Label(rect, cyclingText);
+
+            GUI.color = Color.white;
+
+            curY += rect.height;
+        }
+    }
 }
