@@ -44,7 +44,7 @@ namespace SK_Building_Alternatives_Framework
         private static List<BuildableDef> FindMatchingBuildableDefs(string searchTerm)
         {
             return DefDatabase<BuildableDef>.AllDefsListForReading
-                .Where(def => def.defName.ToLowerInvariant().Contains(searchTerm.ToLowerInvariant()))
+                .Where(def => def.defName.ToLowerInvariant().Contains(searchTerm.ToLowerInvariant()) && def.BuildableByPlayer)
                 .ToList();
         }
 
@@ -54,47 +54,52 @@ namespace SK_Building_Alternatives_Framework
             sb.AppendLine("<?xml version=\"1.0\" encoding=\"utf-8\" ?>");
             sb.AppendLine("<Patch>");
             sb.AppendLine($"    <!-- Auto-generated patch for buildings containing '{tag}' -->");
-            sb.AppendLine("    <Operation Class=\"PatchOperationSequence\">");
-            sb.AppendLine("        <operations>");
 
-            foreach (var def in defs)
+            // Add mod extension operation for all defs
+            AddModExtensionOperation(sb, defs, tag);
+
+            // Add remove designator dropdown operation for defs that have it
+            var defsWithDropdown = defs.Where(def => def.designatorDropdown != null).ToList();
+            if (defsWithDropdown.Any())
             {
-                AddModExtensionOperation(sb, def, tag);
-
-                if (def.designatorDropdown != null)
-                {
-                    AddRemoveDesignatorDropdownOperation(sb, def);
-                }
+                AddRemoveDesignatorDropdownOperation(sb, defsWithDropdown);
             }
 
-            sb.AppendLine("        </operations>");
-            sb.AppendLine("    </Operation>");
             sb.AppendLine("</Patch>");
 
             return sb.ToString();
         }
 
-        private static void AddModExtensionOperation(StringBuilder sb, BuildableDef def, string tag)
+        private static void AddModExtensionOperation(StringBuilder sb, List<BuildableDef> defs, string tag)
         {
-            sb.AppendLine("            <li Class=\"PatchOperationAdd\">");
-            sb.AppendLine($"                <xpath>/Defs/ThingDef[defName=\"{def.defName}\"]</xpath>");
-            sb.AppendLine("                <value>");
-            sb.AppendLine("                    <modExtensions>");
-            sb.AppendLine("                        <li Class=\"SK_Building_Alternatives_Framework.AlternativesModExtension\">");
-            sb.AppendLine($"                            <tag>{tag}</tag>");
-            sb.AppendLine("                            <isMaster>false</isMaster>");
-            sb.AppendLine("                            <hideFromGUI>true</hideFromGUI>");
-            sb.AppendLine("                        </li>");
-            sb.AppendLine("                    </modExtensions>");
-            sb.AppendLine("                </value>");
+            sb.AppendLine("    <Operation Class=\"PatchOperationAddModExtension\">");
+            sb.AppendLine($"        <xpath>{BuildOrXPath(defs)}</xpath>");
+            sb.AppendLine("        <value>");
+            sb.AppendLine("            <li Class=\"SK_Building_Alternatives_Framework.AlternativesModExtension\">");
+            sb.AppendLine($"                <tag>{tag}</tag>");
+            sb.AppendLine("                <isMaster>false</isMaster>");
+            sb.AppendLine("                <hideFromGUI>true</hideFromGUI>");
             sb.AppendLine("            </li>");
+            sb.AppendLine("        </value>");
+            sb.AppendLine("    </Operation>");
         }
 
-        private static void AddRemoveDesignatorDropdownOperation(StringBuilder sb, BuildableDef def)
+        private static void AddRemoveDesignatorDropdownOperation(StringBuilder sb, List<BuildableDef> defs)
         {
-            sb.AppendLine("            <li Class=\"PatchOperationRemove\">");
-            sb.AppendLine($"                <xpath>/Defs/ThingDef[defName=\"{def.defName}\"]/designatorDropdown</xpath>");
-            sb.AppendLine("            </li>");
+            sb.AppendLine("    <Operation Class=\"PatchOperationRemove\">");
+            sb.AppendLine($"        <xpath>{BuildOrXPath(defs)}/designatorDropdown</xpath>");
+            sb.AppendLine("    </Operation>");
+        }
+
+        private static string BuildOrXPath(List<BuildableDef> defs)
+        {
+            if (defs.Count == 1)
+            {
+                return $"/Defs/ThingDef[defName=\"{defs[0].defName}\"]";
+            }
+
+            var conditions = defs.Select(def => $"defName=\"{def.defName}\"");
+            return $"/Defs/ThingDef[{string.Join(" or ", conditions)}]";
         }
 
         private static string SavePatchFile(string xmlContent, string searchTerm)

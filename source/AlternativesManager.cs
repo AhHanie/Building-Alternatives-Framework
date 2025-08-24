@@ -97,7 +97,6 @@ namespace SK_Building_Alternatives_Framework
                 {
                     cachedAlternatives[cachedDefsExtensions[def].tag].Add(def);
                 }
-                Log.Message($"{def.defName} has tag: {cachedDefsExtensions[def].tag}");
             }
         }
     }
