@@ -230,4 +230,35 @@ namespace SK_Building_Alternatives_Framework
             curY += rect.height;
         }
     }
+
+    [HarmonyPatch(typeof(ArchitectCategoryTab), "Matches")]
+    public static class ArchitectCategoryTab_Matches_Alternatives_Patch
+    {
+        public static void Postfix(ref bool __result, ArchitectCategoryTab __instance, Command c, QuickSearchFilter ___quickSearchFilter)
+        {
+            if (__result)
+                return;
+
+            if (!(c is Designator_Build buildDesignator) || buildDesignator.PlacingDef == null)
+                return;
+
+            if (___quickSearchFilter == null || !___quickSearchFilter.Active)
+                return;
+            
+            if (!buildDesignator.PlacingDef.HasAlternatives())
+                return;
+
+            var alternatives = buildDesignator.PlacingDef.GetAlternatives();
+
+            if (alternatives == null || alternatives.Count == 0)
+                return;
+
+            foreach (var alternative in alternatives)
+            {
+                var tempDesignator = new Designator_Build(alternative);
+                __result = ___quickSearchFilter.Matches(tempDesignator.Label);
+                if (__result) return;
+            }
+        }
+    }
 }
