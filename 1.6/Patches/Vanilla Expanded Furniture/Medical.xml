@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+    <Operation Class="PatchOperationFindMod">
+        <mods>
+            <li>Vanilla Furniture Expanded - Medical Module</li>
+        </mods>
+        <match Class="PatchOperationSequence">
+            <operations>
+
+                <!-- Medical Beds Alternatives Group -->
+                <!-- Operating Table as Master (more basic/common medical bed) -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="Bed_OperatingTable"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFEM_MedicalBedsAlternatives</tag>
+                                <isMaster>true</isMaster>
+                                <uiIconPath>UI/List</uiIconPath>
+                                <hoverUiIconPath>UI/ListSelected</hoverUiIconPath>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Cryptosleep Suspender as Alternative (advanced medical bed) -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="Bed_CryptoBed"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFEM_MedicalBedsAlternatives</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Medical Support Facilities Alternatives Group -->
+                <!-- Vitals Centre as Master (larger, multi-patient facility) -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="Facility_VitalsCentre"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFEM_MedicalSupportAlternatives</tag>
+                                <isMaster>true</isMaster>
+                                <uiIconPath>UI/List</uiIconPath>
+                                <hoverUiIconPath>UI/ListSelected</hoverUiIconPath>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- IV Drip as Alternative (single-patient adjacent support) -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="Facility_IVDrip"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFEM_MedicalSupportAlternatives</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+            </operations>
+        </match>
+    </Operation>
+</Patch>
