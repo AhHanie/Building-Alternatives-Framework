@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<!-- Auto-generated patch for buildings containing 'door' then manually modified-->
+<Operation Class="PatchOperationAddModExtension" MayRequire="LimeTreeSnake.Furnishing">
+	<xpath>/Defs/ThingDef[defName="LTS_ArchedDoor"]</xpath>
+	<value>
+		<li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+			<tag>LTSdoor</tag>
+			<isMaster>true</isMaster>
+			<hideFromGUI>true</hideFromGUI>
+		</li>
+	</value>
+</Operation>
+<Operation Class="PatchOperationAddModExtension" MayRequire="LimeTreeSnake.Furnishing">
+	<xpath>/Defs/ThingDef[defName="LTS_SimpleArchedDoor" or 
+							defName="LTS_ThickDoor" or 
+							defName="LTS_FuturisticDoorOne" or 
+							defName="LTS_FuturisticDoorTwo" or 
+							defName="LTS_LargeFuturisticDoor" or 
+							defName="LTS_HangarDoor" or 
+							defName="LTS_AssymetricDoorOne" or 
+							defName="LTS_AssymetricDoorTwo" or 
+							defName="LTS_AssymetricReinforcedDoorOne" or 
+							defName="LTS_AssymetricReinforcedDoorTwo" or 
+							defName="LTS_SimpleDoorOne" or 
+							defName="LTS_SimpleDoorTwo" or 
+							defName="LTS_LargeSimpleDoorOne" or 
+							defName="LTS_LargeSimpleDoorTwo" or 
+							defName="LTS_SimpleDoorL" or 
+							defName="LTS_SimpleSingleDoorOne" or 
+							defName="LTS_SimpleSingleDoorTwo" or 
+							defName="LTS_SimpleSingleDoorThree" or 
+							defName="LTS_FancyDoorOne" or 
+							defName="LTS_FancyDoorTwo" or 
+							defName="LTS_GlassDoorS" or 
+							defName="LTS_GlassDoorM" or 
+							defName="LTS_GlassDoorL" or 
+							defName="LTS_GlassDoorSingle" or 
+							defName="LTS_ReinforcedDoorL" or 
+							defName="LTS_AssymetricIndustrialLargeDoor" or 
+							defName="LTS_LargeIndustrialDoor" or 
+							defName="LTS_WideIndustrialLargeDoor" or 
+							defName="LTS_WideBlastDoor"]</xpath>
+	<value>
+		<li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+			<tag>LTSdoor</tag>
+			<isMaster>false</isMaster>
+			<hideFromGUI>true</hideFromGUI>
+		</li>
+	</value>
+</Operation>
+</Patch>

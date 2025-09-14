@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<!-- Auto-generated patch for buildings containing 'frame' then manually modified-->
+	<Operation Class="PatchOperationAddModExtension" MayRequire="LimeTreeSnake.Furnishing">
+		<xpath>/Defs/ThingDef[defName="LTS_SimpleDoorFrame"]</xpath>
+		<value>
+			<li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+				<tag>LTSframe</tag>
+				<isMaster>true</isMaster>
+				<hideFromGUI>false</hideFromGUI>
+			</li>
+		</value>
+	</Operation>
+	<Operation Class="PatchOperationAddModExtension" MayRequire="LimeTreeSnake.Furnishing">
+		<xpath>/Defs/ThingDef[defName="LTS_SimpleLargeDoorFrame" or 
+							defName="LTS_SimpleDoorFrameL" or 
+							defName="LTS_FuturisticDoorFrame" or 
+							defName="LTS_FuturisticLargeDoorFrame" or 
+							defName="LTS_MetalFrameL"]</xpath>
+		<value>
+			<li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+				<tag>LTSframe</tag>
+				<isMaster>false</isMaster>
+				<hideFromGUI>true</hideFromGUI>
+			</li>
+		</value>
+	</Operation>
+	<Operation Class="PatchOperationAddModExtension" MayRequire="LimeTreeSnake.Furnishing">
+		<xpath>/Defs/ThingDef[defName="LTS_ArchWood"]</xpath>
+		<value>
+			<li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+				<tag>LTSarch</tag>
+				<isMaster>true</isMaster>
+				<hideFromGUI>false</hideFromGUI>
+			</li>
+		</value>
+	</Operation>
+	<Operation Class="PatchOperationAddModExtension" MayRequire="LimeTreeSnake.Furnishing">
+		<xpath>/Defs/ThingDef[defName="LTS_ArchStone" or
+							defName="LTS_LargeArchStone" or 
+							defName="LTS_LargestArchStone"]</xpath>
+		<value>
+			<li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+				<tag>LTSarch</tag>
+				<isMaster>false</isMaster>
+				<hideFromGUI>true</hideFromGUI>
+			</li>
+		</value>
+	</Operation>
+</Patch>

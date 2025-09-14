@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>/Defs/ThingDef[defName="LTS_Gamlared"]</xpath>
+		<value>
+			<li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+				<tag>LTStable</tag>
+				<isMaster>true</isMaster>
+				<hideFromGUI>false</hideFromGUI>
+			</li>
+		</value>
+	</Operation>
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>/Defs/ThingDef[defName="LTS_Stockholm" or 
+							defName="LTS_Norraryd" or 
+							defName="LTS_Arkelstorp" or 
+							defName="LTS_Skogsta" or 
+							defName="LTS_Askholmen" or 
+							defName="LTS_NordvikenB" or 
+							defName="LTS_NordvikenW" or 
+							defName="LTS_Gamlared"]</xpath>
+		<value>
+			<li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+				<tag>LTStable</tag>
+				<isMaster>false</isMaster>
+				<hideFromGUI>true</hideFromGUI>
+			</li>
+		</value>
+	</Operation>
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>/Defs/ThingDef[defName="LTS_Counter"]</xpath>
+		<value>
+			<li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+				<tag>LTScounter</tag>
+				<isMaster>true</isMaster>
+				<hideFromGUI>false</hideFromGUI>
+			</li>
+		</value>
+	</Operation>
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>/Defs/ThingDef[defName="LTS_CounterB" or 
+							defName="LTS_CounterS" or 
+							defName="LTS_CounterG"]</xpath>
+		<value>
+			<li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+				<tag>LTScounter</tag>
+				<isMaster>false</isMaster>
+				<hideFromGUI>true</hideFromGUI>
+			</li>
+		</value>
+	</Operation>
+</Patch>

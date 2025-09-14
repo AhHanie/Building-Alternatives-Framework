@@ -67,7 +67,7 @@ namespace SK_Building_Alternatives_Framework
             foreach (BuildableDef def in allBuildableDefs)
             {
                 found = false;
-                if (def.modExtensions == null)
+                if (def.modExtensions == null || !def.BuildableByPlayer)
                 {
                     continue;
                 }
