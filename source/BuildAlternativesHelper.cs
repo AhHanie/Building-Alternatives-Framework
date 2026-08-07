@@ -10,12 +10,7 @@ namespace SK_Building_Alternatives_Framework
     {
         public static bool HasAlternatives(this BuildableDef def)
         {
-            List<BuildableDef> alternatives = AlternativesManager.GetCachedAlternatives(def.GetAlternativeListTag());
-            if (alternatives == null || alternatives.Count == 0)
-                return false;
-
-            // Check if any alternatives are actually available (visible)
-            return alternatives.Any(alt => IsVisible(alt));
+            return def.GetOtherVisibleAlternatives().Count > 0;
         }
 
         public static List<BuildableDef> GetAlternatives(this BuildableDef def)
@@ -26,6 +21,11 @@ namespace SK_Building_Alternatives_Framework
 
             // Filter alternatives to only include visible ones
             return alternatives.Where(alt => IsVisible(alt)).ToList();
+        }
+
+        public static List<BuildableDef> GetOtherVisibleAlternatives(this BuildableDef def)
+        {
+            return def.GetAlternatives().Where(alt => alt != def).ToList();
         }
 
         public static bool IsHiddenFromGUI(this BuildableDef def)
@@ -70,7 +70,7 @@ namespace SK_Building_Alternatives_Framework
 
         public static List<Designator_Build> GetAlternativeDesignators(this BuildableDef def)
         {
-            var alternatives = def.GetAlternatives();
+            var alternatives = def.GetOtherVisibleAlternatives();
             var designators = new List<Designator_Build>();
 
             foreach (var alt in alternatives)

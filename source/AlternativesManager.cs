@@ -34,21 +34,7 @@ namespace SK_Building_Alternatives_Framework
         {
             if (def == null) return false;
 
-            var alternatives = GetCachedAlternatives(def.GetAlternativeListTag());
-            return alternatives.Count > 0;
-        }
-
-        public static List<Designator_Build> CreateAlternativeDesignators(BuildableDef originalDef)
-        {
-            var alternatives = GetCachedAlternatives(originalDef.GetAlternativeListTag());
-            var designators = new List<Designator_Build>();
-
-            for (int i=1;i< alternatives.Count;i++)
-            {
-                designators.Add(new Designator_Build(alternatives[i]));
-            }
-
-            return designators;
+            return def.HasAlternatives();
         }
 
         public static AlternativesModExtension GetModExtension(BuildableDef def)

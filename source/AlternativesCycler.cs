@@ -78,6 +78,11 @@ namespace SK_Building_Alternatives_Framework
             if (currentDesignator?.PlacingDef == null)
                 return;
 
+            if (cachedMainItem != null)
+            {
+                cachedAlternatives = GetAllAlternativesIncludingOriginal(cachedMainItem);
+            }
+
             if (cachedAlternatives == null || cachedAlternatives.Count <= 1)
                 return;
 
@@ -100,19 +105,19 @@ namespace SK_Building_Alternatives_Framework
 
         private static List<BuildableDef> GetAllAlternativesIncludingOriginal(BuildableDef originalDef)
         {
-            var alternatives = AlternativesManager.GetCachedAlternatives(originalDef.GetAlternativeListTag());
+            var visibleAlternatives = originalDef.GetAlternatives();
             var allAlternatives = new List<BuildableDef>();
 
-            if (alternatives != null && alternatives.Contains(originalDef))
-            {
-                allAlternatives.AddRange(alternatives);
-            }
-            else
+            if (!visibleAlternatives.Contains(originalDef))
             {
                 allAlternatives.Add(originalDef);
-                if (alternatives != null)
+            }
+
+            foreach (var alt in visibleAlternatives)
+            {
+                if (!allAlternatives.Contains(alt))
                 {
-                    allAlternatives.AddRange(alternatives);
+                    allAlternatives.Add(alt);
                 }
             }
 

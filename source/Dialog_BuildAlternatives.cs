@@ -35,7 +35,7 @@ namespace SK_Building_Alternatives_Framework
         {
             this.originalDesignator = originalDesignator;
 
-            this.alternativeDesignators = AlternativesManager.CreateAlternativeDesignators(originalDesignator.PlacingDef);
+            this.alternativeDesignators = originalDesignator.PlacingDef.GetAlternativeDesignators();
 
             this.alternativeDesignators.Insert(0, originalDesignator);
 
@@ -446,13 +446,18 @@ namespace SK_Building_Alternatives_Framework
 
             Widgets.DefIcon(iconRect, designator.PlacingDef, designator.StuffDef, 1f, null, false, iconColor);
 
-            var labelRect = new Rect(rect.x + 5f, iconRect.yMax + 5f, rect.width - 10f, 40f);
             Text.Font = GameFont.Tiny;
             Text.Anchor = TextAnchor.MiddleCenter;
 
-            string label = designator.LabelCap;
+            float labelWidth = rect.width - 10f;
+            float labelHeight = Text.CalcHeight("W\nW", labelWidth);
+            var labelRect = new Rect(rect.x + 5f, iconRect.yMax + 5f, labelWidth, labelHeight);
+
+            TaggedString label = designator.LabelCap;
             if (isOriginal)
                 label = "WindowAlternative.Item.Original.Label".Translate(label);
+
+            label = label.TruncateHeight(labelRect.width, labelRect.height);
 
             if (isHighlighted)
             {
