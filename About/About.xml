@@ -6,6 +6,7 @@
   <url>https://steamcommunity.com/sharedfiles/filedetails/?id=3778946367</url>
   <supportedVersions>
     <li>1.6</li>
+    <li>1.7</li>
   </supportedVersions>
   <modDependencies>
     <li>
@@ -19,5 +20,5 @@
     <li>brrainz.harmony</li>
   </loadAfter>
   <description>A framework mod that enables modders to define alternative buildings for any structure similar to the designator dropdown system in Rimworld.</description>
-  <modVersion>1.0.0</modVersion>
+  <modVersion>1.1.0</modVersion>
 </ModMetaData>

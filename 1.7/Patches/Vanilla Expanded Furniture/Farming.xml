@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+    <Operation Class="PatchOperationFindMod">
+        <mods>
+            <li>Vanilla Furniture Expanded - Farming</li>
+        </mods>
+        <match Class="PatchOperationSequence">
+            <operations>
+
+                <!-- ===== PLANTER BOX ALTERNATIVES ===== -->
+
+                <!-- Master: VFE_PlanterBox (appears in architect menu) -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="VFE_PlanterBox"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFE_PlanterBoxAlternatives</tag>
+                                <isMaster>true</isMaster>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Alternative: VFE_PlanterBox_Tilable (hidden from menu) -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="VFE_PlanterBox_Tilable"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFE_PlanterBoxAlternatives</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- ===== ARTIFICIAL ECOSYSTEM ALTERNATIVES ===== -->
+
+                <!-- Master: VFE_Ecosystem (appears in architect menu) -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="VFE_Ecosystem"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFE_EcosystemAlternatives</tag>
+                                <isMaster>true</isMaster>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Alternative: VFE_Ecosystem_Tilable (hidden from menu) -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="VFE_Ecosystem_Tilable"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFE_EcosystemAlternatives</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- ===== FARM UTILITY ALTERNATIVES (OPTIONAL) ===== -->
+
+                <!-- Master: VFE_Scarecrow (appears in architect menu) -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="VFE_Scarecrow"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFE_FarmUtilityAlternatives</tag>
+                                <isMaster>true</isMaster>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Alternative: VFE_Sprinkler (hidden from menu) -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="VFE_Sprinkler"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFE_FarmUtilityAlternatives</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+            </operations>
+        </match>
+    </Operation>
+</Patch>

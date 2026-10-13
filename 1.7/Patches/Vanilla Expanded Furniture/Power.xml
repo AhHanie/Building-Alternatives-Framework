@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+    <Operation Class="PatchOperationFindMod">
+        <mods>
+            <li>Vanilla Furniture Expanded - Power</li>
+        </mods>
+        <match Class="PatchOperationSequence">
+            <operations>
+
+                <!-- BATTERY ALTERNATIVES GROUP -->
+                <!-- Small Battery (Master) -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="VFE_SmallBattery"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFE_BatteryAlternatives</tag>
+                                <isMaster>true</isMaster>
+                                <uiIconPath>UI/List</uiIconPath>
+                                <hoverUiIconPath>UI/ListSelected</hoverUiIconPath>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Large Battery -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="VFE_LargeBattery"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFE_BatteryAlternatives</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Advanced Battery -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="VFE_AdvancedBattery"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFE_BatteryAlternatives</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Large Advanced Battery -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="VFE_LargeAdvancedBattery"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFE_BatteryAlternatives</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- PORTABLE GENERATOR ALTERNATIVES GROUP -->
+                <!-- Portable Wood-Fired Generator (Master) -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="VFE_PortableWoodFiredGenerator"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFE_PortableGeneratorAlternatives</tag>
+                                <isMaster>true</isMaster>
+                                <uiIconPath>UI/List</uiIconPath>
+                                <hoverUiIconPath>UI/ListSelected</hoverUiIconPath>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Portable Chemfuel Powered Generator -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="VFE_PortableChemfuelPoweredGenerator"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFE_PortableGeneratorAlternatives</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- INDUSTRIAL GENERATOR ALTERNATIVES GROUP -->
+                <!-- Industrial Wood-Fired Generator (Master) -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="VFE_IndustrialWoodFiredGenerator"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFE_IndustrialGeneratorAlternatives</tag>
+                                <isMaster>true</isMaster>
+                                <uiIconPath>UI/List</uiIconPath>
+                                <hoverUiIconPath>UI/ListSelected</hoverUiIconPath>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Industrial Chemfuel Powered Generator -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="VFE_IndustrialChemfuelPoweredGenerator"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFE_IndustrialGeneratorAlternatives</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- ADVANCED POWER SOURCE ALTERNATIVES GROUP -->
+                <!-- Advanced Solar Generator (Master) -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="VFE_AdvancedSolarGenerator"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFE_AdvancedPowerAlternatives</tag>
+                                <isMaster>true</isMaster>
+                                <uiIconPath>UI/List</uiIconPath>
+                                <hoverUiIconPath>UI/ListSelected</hoverUiIconPath>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Advanced Wind Turbine -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="VFE_AdvancedWindTurbine"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFE_AdvancedPowerAlternatives</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Advanced Watermill Generator -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="VFE_AdvancedWatermillGenerator"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFE_AdvancedPowerAlternatives</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Advanced Geothermal Generator -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="VPE_AdvancedGeothermalGenerator"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFE_AdvancedPowerAlternatives</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- EXOTIC POWER ALTERNATIVES GROUP -->
+                <!-- Small Vanometric Power Cell (Master) -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="VFE_SmallVanometricPowerCell"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFE_ExoticPowerAlternatives</tag>
+                                <isMaster>true</isMaster>
+                                <uiIconPath>UI/List</uiIconPath>
+                                <hoverUiIconPath>UI/ListSelected</hoverUiIconPath>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Large Vanometric Power Cell -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="VFE_LargeVanometricPowerCell"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFE_ExoticPowerAlternatives</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Archotech Violence Generator -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="VPE_ArchotechViolenceGenerator"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFE_ExoticPowerAlternatives</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- LARGE SCALE POWER ALTERNATIVES GROUP -->
+                <!-- Nuclear Reactor (Master) -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="VPE_NuclearGenerator"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFE_LargeScalePowerAlternatives</tag>
+                                <isMaster>true</isMaster>
+                                <uiIconPath>UI/List</uiIconPath>
+                                <hoverUiIconPath>UI/ListSelected</hoverUiIconPath>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Tidal Generator -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="VFE_TidalGenerator"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFE_LargeScalePowerAlternatives</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+            </operations>
+        </match>
+    </Operation>
+</Patch>

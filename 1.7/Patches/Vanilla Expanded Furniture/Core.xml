@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+    <Operation Class="PatchOperationFindMod">
+        <mods>
+            <li>Vanilla Furniture Expanded</li>
+        </mods>
+        <match Class="PatchOperationSequence">
+            <operations>
+
+                <!-- ===== SINGLE BEDS ===== -->
+
+                <!-- Simple bed as master for single beds -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="Bed_Simple"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>SingleBedAlternatives</tag>
+                                <isMaster>true</isMaster>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Chiseled bed as alternative -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="Bed_StoneSlab"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>SingleBedAlternatives</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Ergonomic bed as alternative -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="Bed_Ergonomic"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>SingleBedAlternatives</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- ===== DOUBLE BEDS ===== -->
+
+                <!-- Simple double bed as master for double beds -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="VFE_Bed_SimpleDouble"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>DoubleBedAlternatives</tag>
+                                <isMaster>true</isMaster>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Chiseled double bed as alternative -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="VFE_Bed_StoneSlabDouble"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>DoubleBedAlternatives</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Ergonomic double bed as alternative -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="Bed_DoubleErgonomic"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>DoubleBedAlternatives</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Royal poster bed as alternative -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="Bed_Kingsize"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>DoubleBedAlternatives</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- ===== SEATING (ALL CHAIRS AND COUCHES) ===== -->
+
+                <!-- Sitting cushion as master for all seating -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="Seat_Cushion"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>SeatingAlternatives</tag>
+                                <isMaster>true</isMaster>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Royal chair as alternative -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="Seat_RoyalChair"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>SeatingAlternatives</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- School chair as alternative -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="Seat_SquareChair"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>SeatingAlternatives</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Ergonomic chair as alternative -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="Seat_ModernChair"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>SeatingAlternatives</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Royal armchair as alternative -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="Seat_RoyalArmchair"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>SeatingAlternatives</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Modular couch as alternative -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="VFE_ModularCouch"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>SeatingAlternatives</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- ===== TABLES (ALL SIZES) ===== -->
+
+                <!-- Basic table 1x1 as master for all tables -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="Table_1x1c"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>TableAlternatives</tag>
+                                <isMaster>true</isMaster>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Royal table 1x1 as alternative -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="Table_Royal1x1c"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>TableAlternatives</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Royal table 1x2 as alternative -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="Table_Royal1x2c"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>TableAlternatives</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Royal table 2x2 as alternative -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="Table_Royal2x2c"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>TableAlternatives</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Royal table 2x4 as alternative -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="Table_Royal2x4c"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>TableAlternatives</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Royal table 3x3 as alternative -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="Table_Royal3x3c"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>TableAlternatives</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- ===== WARDROBES/DRESSERS ===== -->
+
+                <!-- Basic wardrobe as master -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="Table_Wardrobe"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>WardrobeAlternatives</tag>
+                                <isMaster>true</isMaster>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Royal dresser as alternative -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="Table_RoyalDresser"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>WardrobeAlternatives</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Royal wardrobe as alternative -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="VFE_RoyalWardrobe"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>WardrobeAlternatives</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- ===== RADIOS ===== -->
+
+                <!-- Industrial radio as master -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="Radio_Industrial"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>RadioAlternatives</tag>
+                                <isMaster>true</isMaster>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Spacer radio as alternative -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="Radio_Spacer"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>RadioAlternatives</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- ===== COMPUTERS ===== -->
+
+                <!-- Industrial computer as master -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="Joy_InudstrialComputer"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>ComputerAlternatives</tag>
+                                <isMaster>true</isMaster>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Modern computer as alternative -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="Joy_ModernComputer"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>ComputerAlternatives</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- ===== LAMPS (ALL TYPES) ===== -->
+
+                <!-- Desk lamp as master for all lamps -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="VFE_DeskLamp"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>LampAlternatives</tag>
+                                <isMaster>true</isMaster>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Floor lamp as alternative -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="VFE_FloorLamp"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>LampAlternatives</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Royal standing lamp as alternative -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="VFE_RoyalLamp"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>LampAlternatives</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Outdoor lamp as alternative -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="Light_Streetlamp"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>LampAlternatives</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- ===== WASTE BINS ===== -->
+
+                <!-- Small bin as master -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="Bin_Small"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>BinAlternatives</tag>
+                                <isMaster>true</isMaster>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Large bin as alternative -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="Bin_Large"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>BinAlternatives</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+            </operations>
+        </match>
+    </Operation>
+</Patch>

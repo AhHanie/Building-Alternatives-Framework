@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+    <Operation Class="PatchOperationFindMod">
+        <mods>
+            <li>Vanilla Furniture Expanded - Spacer Module</li>
+        </mods>
+        <match Class="PatchOperationSequence">
+            <operations>
+
+                <!-- ========== SEATING ALTERNATIVES GROUP ========== -->
+                <!-- Advanced Chair (Master) -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="Seat_AdvChair"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFE_Spacer_SeatingAlternatives</tag>
+                                <isMaster>true</isMaster>
+                                <uiIconPath>UI/List</uiIconPath>
+                                <hoverUiIconPath>UI/ListSelected</hoverUiIconPath>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Modern Armchair (Alternative) -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="VFES_ModernArmchair"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFE_Spacer_SeatingAlternatives</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Modern Couch (Alternative) -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="VFES_ModernCouch"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFE_Spacer_SeatingAlternatives</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- ========== INTERACTIVE TABLES GROUP ========== -->
+                <!-- Interactive Table 1x1 (Master) -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="Table_interactive_1x1c"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFE_Spacer_InteractiveTablesAlternatives</tag>
+                                <isMaster>true</isMaster>
+                                <uiIconPath>UI/List</uiIconPath>
+                                <hoverUiIconPath>UI/ListSelected</hoverUiIconPath>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Interactive Table 2x2 (Alternative) -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="Table_interactive_2x2c"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFE_Spacer_InteractiveTablesAlternatives</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- ========== ADVANCED BEDS GROUP ========== -->
+                <!-- Advanced Bed Single (Master) -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="Bed_AdvBed"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFE_Spacer_AdvancedBedsAlternatives</tag>
+                                <isMaster>true</isMaster>
+                                <uiIconPath>UI/List</uiIconPath>
+                                <hoverUiIconPath>UI/ListSelected</hoverUiIconPath>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Advanced Double Bed (Alternative) -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="Bed_AdvDoubleBed"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFE_Spacer_AdvancedBedsAlternatives</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- ========== ILLUMINATED BEDROOM FURNITURE GROUP ========== -->
+                <!-- Illuminated End Table (Master) -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="Table_IlluminatedEndTable"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFE_Spacer_IlluminatedFurnitureAlternatives</tag>
+                                <isMaster>true</isMaster>
+                                <uiIconPath>UI/List</uiIconPath>
+                                <hoverUiIconPath>UI/ListSelected</hoverUiIconPath>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Illuminated Dresser (Alternative) -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="Table_IlluminatedDresser"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFE_Spacer_IlluminatedFurnitureAlternatives</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Illuminated Wardrobe (Alternative) -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="VFES_Table_IlluminatedWardrobe"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFE_Spacer_IlluminatedFurnitureAlternatives</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- ========== TELEVISION GROUP ========== -->
+                <!-- Wall-Mounted Television (Master) -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="VFES_WallMountedTelevision"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFE_Spacer_TelevisionAlternatives</tag>
+                                <isMaster>true</isMaster>
+                                <uiIconPath>UI/List</uiIconPath>
+                                <hoverUiIconPath>UI/ListSelected</hoverUiIconPath>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Hyperscreen Television (Alternative) -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="UltrascreenTV"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFE_Spacer_TelevisionAlternatives</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+            </operations>
+        </match>
+    </Operation>
+</Patch>

@@ -1,0 +1,687 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+    <Operation Class="PatchOperationFindMod">
+        <mods>
+            <li>Vanilla Furniture Expanded - Architect</li>
+        </mods>
+        <match Class="PatchOperationSequence">
+            <operations>
+
+                <!-- ========== REMOVE EXISTING VANILLA DROPDOWNS ========== -->
+
+                <!-- Remove stone bridge dropdowns -->
+                <li Class="PatchOperationRemove">
+                    <xpath>/Defs/TerrainDef[@Name="StoneBridgeBase"]/designatorDropdown</xpath>
+                </li>
+
+                <!-- Remove wooden parquet dropdowns -->
+                <li Class="PatchOperationRemove">
+                    <xpath>/Defs/TerrainDef[@Name="VFEArch_WoodenParquetBase"]/designatorDropdown</xpath>
+                </li>
+
+                <!-- Remove wood floor dropdowns -->
+                <li Class="PatchOperationRemove">
+                    <xpath>/Defs/TerrainDef[defName="VFEArch_WoodPlankFloorWalnut" or defName="VFEArch_WoodPlankFloorBirch" or defName="VFEArch_WoodPlankFloorMahogany"]/designatorDropdown</xpath>
+                </li>
+
+                <!-- Remove cobblestone floor dropdowns -->
+                <li Class="PatchOperationRemove">
+                    <xpath>/Defs/TerrainDef[@Name="CobblestoneBase"]/designatorDropdown</xpath>
+                </li>
+
+                <!-- Remove polished stone floor dropdowns -->
+                <li Class="PatchOperationRemove">
+                    <xpath>/Defs/TerrainDef[@Name="PolishedStoneFloorBase"]/designatorDropdown</xpath>
+                </li>
+
+                <!-- Remove stone slabs dropdowns -->
+                <li Class="PatchOperationRemove">
+                    <xpath>/Defs/TerrainDef[@Name="StoneSlabsBase"]/designatorDropdown</xpath>
+                </li>
+
+                <!-- Remove fine wooden floor dropdowns -->
+                <li Class="PatchOperationRemove">
+                    <xpath>/Defs/TerrainDef[defName="VFEArch_FineWoodenFloor" or defName="VFEArch_FineWoodenFloorWalnut" or defName="VFEArch_FineWoodenFloorBirch" or defName="VFEArch_FineWoodenFloorMahogany"]/designatorDropdown</xpath>
+                </li>
+
+                <!-- ========== WALL ALTERNATIVES ========== -->
+
+                <!-- Log Wall as master -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="VFEArch_LogWall"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFEArch_WallAlternatives</tag>
+                                <isMaster>true</isMaster>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Hedge Wall -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="VFEArch_HedgeWall"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFEArch_WallAlternatives</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Cell Wall -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="VFEArch_CellWall"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFEArch_WallAlternatives</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Armored Wall -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="VFEArch_ArmoredWall"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFEArch_WallAlternatives</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Fine Wall -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="VFEArch_FineWall"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFEArch_WallAlternatives</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- ========== FENCE ALTERNATIVES ========== -->
+
+                <!-- Chainlink Fence as master -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="VFEArch_ChainlinkFence"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFEArch_FenceAlternatives</tag>
+                                <isMaster>true</isMaster>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Picket Fence -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="VFEArch_PicketFence"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFEArch_FenceAlternatives</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Brick Fence -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="VFEArch_BrickFence"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFEArch_FenceAlternatives</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Low Fence -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="VFEArch_LowFence"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFEArch_FenceAlternatives</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Invisible Fence -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="VFEArch_InvisibleFence"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFEArch_FenceAlternatives</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- ========== DOOR ALTERNATIVES ========== -->
+
+                <!-- Single Door as master -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="VFEArch_SingleDoor"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFEArch_DoorAlternatives</tag>
+                                <isMaster>true</isMaster>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Single Door (Flipped) -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="VFEArch_SingleDoor_Flipped"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFEArch_DoorAlternatives</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Cell Door -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="VFEArch_CellDoor"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFEArch_DoorAlternatives</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Armored Door -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="VFEArch_ArmoredDoor"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFEArch_DoorAlternatives</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Animal Gate -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/ThingDef[defName="VFEArch_AnimalGate"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFEArch_DoorAlternatives</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- ========== STONE BRIDGE ALTERNATIVES ========== -->
+
+                <!-- Sandstone Bridge as master -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/TerrainDef[defName="VFEArch_BridgeSandstone"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFEArch_StoneBridges</tag>
+                                <isMaster>true</isMaster>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Other stone bridges as alternatives -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/TerrainDef[defName="VFEArch_BridgeGranite"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFEArch_StoneBridges</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/TerrainDef[defName="VFEArch_BridgeLimestone"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFEArch_StoneBridges</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/TerrainDef[defName="VFEArch_BridgeSlate"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFEArch_StoneBridges</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/TerrainDef[defName="VFEArch_BridgeMarble"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFEArch_StoneBridges</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- ========== WOODEN PARQUET ALTERNATIVES ========== -->
+
+                <!-- Basic wooden parquet as master -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/TerrainDef[defName="VFEArch_WoodenParquet"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFEArch_WoodenParquets</tag>
+                                <isMaster>true</isMaster>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Parquet variants as alternatives -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/TerrainDef[defName="VFEArch_WoodenParquetWalnut"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFEArch_WoodenParquets</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/TerrainDef[defName="VFEArch_WoodenParquetBirch"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFEArch_WoodenParquets</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/TerrainDef[defName="VFEArch_WoodenParquetMahogany"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFEArch_WoodenParquets</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- ========== WOOD FLOOR ALTERNATIVES ========== -->
+
+                <!-- Walnut wood floor as master -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/TerrainDef[defName="VFEArch_WoodPlankFloorWalnut"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFEArch_WoodFloors</tag>
+                                <isMaster>true</isMaster>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Wood floor variants as alternatives -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/TerrainDef[defName="VFEArch_WoodPlankFloorBirch"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFEArch_WoodFloors</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/TerrainDef[defName="VFEArch_WoodPlankFloorMahogany"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFEArch_WoodFloors</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- ========== COBBLESTONE FLOOR ALTERNATIVES ========== -->
+
+                <!-- Sandstone cobblestone as master -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/TerrainDef[defName="VFEArch_CobblestoneFloorSandstone"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFEArch_CobblestoneFloors</tag>
+                                <isMaster>true</isMaster>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Other cobblestone variants as alternatives -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/TerrainDef[defName="VFEArch_CobblestoneFloorGranite"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFEArch_CobblestoneFloors</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/TerrainDef[defName="VFEArch_CobblestoneFloorLimestone"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFEArch_CobblestoneFloors</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/TerrainDef[defName="VFEArch_CobblestoneFloorSlate"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFEArch_CobblestoneFloors</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/TerrainDef[defName="VFEArch_CobblestoneFloorMarble"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFEArch_CobblestoneFloors</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- ========== POLISHED STONE FLOOR ALTERNATIVES ========== -->
+
+                <!-- Sandstone polished floor as master -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/TerrainDef[defName="VFEArch_PolishedStoneFloorSandstone"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFEArch_PolishedStoneFloors</tag>
+                                <isMaster>true</isMaster>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Other polished stone variants as alternatives -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/TerrainDef[defName="VFEArch_PolishedStoneFloorGranite"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFEArch_PolishedStoneFloors</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/TerrainDef[defName="VFEArch_PolishedStoneFloorLimestone"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFEArch_PolishedStoneFloors</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/TerrainDef[defName="VFEArch_PolishedStoneFloorSlate"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFEArch_PolishedStoneFloors</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/TerrainDef[defName="VFEArch_PolishedStoneFloorMarble"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFEArch_PolishedStoneFloors</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- ========== STONE SLABS ALTERNATIVES ========== -->
+
+                <!-- Sandstone slabs as master -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/TerrainDef[defName="VFEArch_SlabsSandstone"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFEArch_StoneSlabs</tag>
+                                <isMaster>true</isMaster>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Other stone slabs variants as alternatives -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/TerrainDef[defName="VFEArch_SlabsGranite"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFEArch_StoneSlabs</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/TerrainDef[defName="VFEArch_SlabsLimestone"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFEArch_StoneSlabs</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/TerrainDef[defName="VFEArch_SlabsSlate"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFEArch_StoneSlabs</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/TerrainDef[defName="VFEArch_SlabsMarble"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFEArch_StoneSlabs</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- ========== FINE WOODEN FLOOR ALTERNATIVES ========== -->
+
+                <!-- Basic fine wooden floor as master -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/TerrainDef[defName="VFEArch_FineWoodenFloor"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFEArch_FineWoodenFloors</tag>
+                                <isMaster>true</isMaster>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <!-- Fine wooden floor variants as alternatives -->
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/TerrainDef[defName="VFEArch_FineWoodenFloorWalnut"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFEArch_FineWoodenFloors</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/TerrainDef[defName="VFEArch_FineWoodenFloorBirch"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFEArch_FineWoodenFloors</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/TerrainDef[defName="VFEArch_FineWoodenFloorMahogany"]</xpath>
+                    <value>
+                        <modExtensions>
+                            <li Class="SK_Building_Alternatives_Framework.AlternativesModExtension">
+                                <tag>VFEArch_FineWoodenFloors</tag>
+                                <isMaster>false</isMaster>
+                                <hideFromGUI>true</hideFromGUI>
+                            </li>
+                        </modExtensions>
+                    </value>
+                </li>
+
+            </operations>
+        </match>
+    </Operation>
+</Patch>
